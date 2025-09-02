@@ -1,0 +1,28 @@
+[project]
+name = "genocrate"
+version = "0.1"
+description = "CLI suite"
+readme = "README.md"
+authors = [{name = "William Intan"}]
+license = "Apache-2.0"
+requires-python = ">=3.8"
+classifiers = []
+dependencies = [
+    "click"
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/umccr/genocrate"
+Changelog = "https://github.com/umccr/genocrate/releases"
+Issues = "https://github.com/umccr/genocrate/issues"
+CI = "https://github.com/umccr/genocrate/actions"
+
+[project.scripts]
+genocrate = "genocrate.cli:cli"
+
+[project.optional-dependencies]
+test = ["pytest"]
