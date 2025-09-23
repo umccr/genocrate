@@ -1,0 +1,84 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.2/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": { "@id": "https://w3id.org/ro/crate/1.2" },
+      "about": { "@id": "./" }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "batch-001",
+      "description": "Genomics data batch containing BAM alignment and VCF variant files for sample A001",
+      "datePublished": "2025-07-29",
+      "publisher": { "@id": "https://ror.org/01ej9dk98" },
+      "license": { "@id": "http://spdx.org/licenses/MIT" },
+      "hasPart": [{ "@id": "#A001" }]
+    },
+    {
+      "@id": "#A001",
+      "@type": "Dataset",
+      "name": "A001",
+      "description": "Dataset for A001",
+      "identifier": "A001",
+      "hasPart": [{ "@id": "#A001-bam" }, { "@id": "#A001-vcf" }]
+    },
+    {
+      "@id": "#A001-bam",
+      "@type": "Collection",
+      "name": "BAM files for A001",
+      "description": "Binary alignment files and indices",
+      "identifier": "A001-bam",
+      "hasPart": [{ "@id": "A001.bam" }, { "@id": "A001.bam.bai" }]
+    },
+    {
+      "@id": "#A001-vcf",
+      "@type": "Collection",
+      "name": "VCF files for A001",
+      "description": "Variant call files and indices",
+      "identifier": "A001-vcf",
+      "hasPart": [{ "@id": "A001.vcf" }, { "@id": "A001.vcf.tbi" }]
+    },
+    {
+      "@id": "https://ror.org/01ej9dk98",
+      "@type": "Organization",
+      "name": "The University of Melbourne",
+      "description": "UMCCR part of the University of Melbourne",
+      "url": "https://umccr.org/"
+    },
+    {
+      "@id": "http://spdx.org/licenses/MIT",
+      "@type": "DefinedTerm",
+      "termCode": "MIT",
+      "identifier": "MIT",
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "@id": "A001.bam",
+      "@type": "File",
+      "name": "BAM alignment file for sample A001",
+      "description": "Binary Alignment/Map file containing aligned sequencing reads"
+    },
+    {
+      "@id": "A001.bam.bai",
+      "@type": "File",
+      "name": "BAM index file for sample A001",
+      "description": "Binary index file for the corresponding BAM file to enable random access"
+    },
+    {
+      "@id": "A001.vcf",
+      "@type": "File",
+      "name": "VCF variant file for sample A001",
+      "description": "Variant Call Format file containing genetic variants"
+    },
+    {
+      "@id": "A001.vcf.tbi",
+      "@type": "File",
+      "name": "VCF index file for sample A001",
+      "description": "Tabix index file for the corresponding VCF file to enable random access"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.2/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        },
+        {
+          "@id": "https://www.researchobject.org/ro-crate/specification/1.2/profiles"
+        }
+      ],
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "description": "GenoCrate Batch Genomic Profile: a specialization of RO-Crate for packaging genomic data submissions. All files are grouped by artifact type, and artifact groups are linked to a single participant identifier, ensuring a clear, consistent structure for each data batch.",
+      "@type": "Dataset",
+      "datePublished": "2025-09-22",
+      "name": "Genocrate Batch Profile",
+      "version": "0.0.1",
+      "hasPart": [
+        { "@id": "#root-dataset-rule" },
+        { "@id": "#use-bag-it" },
+        { "@id": "#hierarchy-guide" },
+        { "@id": "example/" }
+      ],
+      "license": { "@id": "http://spdx.org/licenses/MIT" }
+    },
+    {
+      "@id": "#hierarchy-guide",
+      "@type": "Guide",
+      "name": "Hierarchy Overview",
+      "description": "Data hierarchy: Root Dataset → Dataset → Collection → File. Each level references its children using 'hasPart'. Constraints specify requirements for each entity type.",
+      "mentions": [
+        { "@id": "#root-dataset-rule" },
+        { "@id": "#unique-dataset-rule" },
+        { "@id": "#artifact-collection-rule" },
+        { "@id": "#file-rule" }
+      ]
+    },
+    {
+      "@id": "#root-dataset-rule",
+      "@type": "Constraint",
+      "name": "Root Dataset Requirement",
+      "category": "MUST",
+      "description": "The root Dataset MUST use 'hasPart' to reference at least one 'Dataset' entity, as described by '#unique-dataset-rule'.",
+      "hasPart": [{ "@id": "#unique-dataset-rule" }]
+    },
+    {
+      "@id": "#unique-dataset-rule",
+      "@type": "Constraint",
+      "name": "Identifier Dataset Requirement",
+      "description": "Each Dataset MUST include an 'identifier' property for uniqueness, and MUST reference at least one 'Collection' entity (see '#artifact-collection-rule').",
+      "hasPart": [{ "@id": "#artifact-collection-rule" }]
+    },
+    {
+      "@id": "#artifact-collection-rule",
+      "@type": "Constraint",
+      "name": "Artifact Collection Requirement",
+      "description": "An artifact 'Collection' groups related artifacts and MUST reference one or more 'File' entities within the same category. Example: a VCF file and its index file form a single artifact collection. Assign '@id' using the identifier and artifact type (e.g., 'A001-vcf') for consistency.",
+      "hasPart": [{ "@id": "#file-rule" }]
+    },
+    {
+      "@id": "#file-rule",
+      "@type": "Constraint",
+      "name": "File Requirement",
+      "category": "MUST",
+      "description": "Each file entity MUST have '@type': 'File'. Listing in the 'hasPart' property of its parent artifact is context-dependent."
+    },
+    {
+      "@id": "#use-bag-it",
+      "@type": "Recommendation",
+      "name": "Use BAG IT format",
+      "description": "The submission SHOULD follow the BagIt specification for reliable packaging and transfer.",
+      "category": "SHOULD",
+      "conformsTo": {
+        "@id": "https://bagit-profiles.github.io/bagit-profiles-specification/"
+      }
+    },
+    {
+      "@id": "http://spdx.org/licenses/MIT",
+      "@type": "DefinedTerm",
+      "termCode": "MIT",
+      "identifier": "MIT",
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "@id": "example/",
+      "@type": "Dataset",
+      "name": "Example RO-Crate following this profile",
+      "license": { "@id": "http://spdx.org/licenses/MIT" },
+      "subjectOf": [
+        {
+          "@id": "example/ro-crate-metadata.json"
+        },
+        {
+          "@id": "example/ro-crate-preview.html"
+        }
+      ]
+    },
+    {
+      "@id": "example/ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "encodingFormat": "text/html"
+    },
+    {
+      "@id": "example/ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": [{ "@id": "https://w3id.org/ro/crate/1.2" }],
+      "encodingFormat": "application/json",
+      "license": { "@id": "http://spdx.org/licenses/MIT" }
+    }
+  ]
+}

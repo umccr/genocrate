@@ -1,0 +1,667 @@
+
+
+<html>
+<head>
+
+
+<script type="application/ld+json"> 
+  {
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context"
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "@conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Study-A: Genomics Research Dataset",
+      "description": "Complete genomics research dataset containing sequencing data, alignments, and variant calls organized in chronological batches. This study includes FASTQ sequencing reads, BAM alignment files, and VCF variant files for multiple samples processed across three submission batches.",
+      "datePublished": "2025-07-29",
+      "publisher": {
+        "@id": "https://ror.org/01ej9dk98"
+      },
+      "license": {
+        "@id": "http://spdx.org/licenses/MIT"
+      },
+      "hasPart": [
+        {
+          "@id": "#A001"
+        },
+        {
+          "@id": "#A002"
+        },
+        {
+          "@id": "#A003"
+        }
+      ]
+    },
+    {
+      "@id": "https://ror.org/01ej9dk98",
+      "@type": "Organization",
+      "name": "The University of Melbourne",
+      "description": "UMCCR part of the University of Melbourne",
+      "url": "https://umccr.org/"
+    },
+    {
+      "@id": "#A001",
+      "@type": "Dataset",
+      "name": "Sample A001",
+      "description": "Complete genomics dataset for sample A001",
+      "identifier": "A001",
+      "hasPart": [
+        {
+          "@id": "#A001-fastq"
+        },
+        {
+          "@id": "#A001-bam"
+        },
+        {
+          "@id": "#A001-vcf"
+        }
+      ],
+      "mentions": [
+        {
+          "@id": "#001-history-001"
+        },
+        {
+          "@id": "#001-history-002"
+        }
+      ]
+    },
+    {
+      "@id": "#A002",
+      "@type": "Dataset",
+      "name": "Sample A002",
+      "description": "Complete genomics dataset for sample A002",
+      "identifier": "A002",
+      "hasPart": [
+        {
+          "@id": "#A002-fastq"
+        },
+        {
+          "@id": "#A002-bam"
+        },
+        {
+          "@id": "#A002-vcf"
+        }
+      ],
+      "mentions": [
+        {
+          "@id": "#002-history-001"
+        },
+        {
+          "@id": "#002-history-002"
+        },
+        {
+          "@id": "#002-history-003"
+        }
+      ]
+    },
+    {
+      "@id": "#A003",
+      "@type": "Dataset",
+      "name": "Sample A003",
+      "description": "Complete genomics dataset for sample A003",
+      "identifier": "A003",
+      "hasPart": [
+        {
+          "@id": "#A003-fastq"
+        },
+        {
+          "@id": "#A003-bam"
+        },
+        {
+          "@id": "#A003-vcf"
+        }
+      ],
+      "mentions": [
+        {
+          "@id": "#002-history-001"
+        }
+      ]
+    },
+    {
+      "@id": "#A001-fastq",
+      "@type": "Dataset",
+      "name": "A001 FASTQ files",
+      "description": "Sequencing reads for sample A001",
+      "identifier": "A001-fastq",
+      "hasPart": [
+        {
+          "@id": "batches/batch-002/data/A001_R1.fastq"
+        },
+        {
+          "@id": "batches/batch-002/data/A001_R2.fastq"
+        }
+      ]
+    },
+    {
+      "@id": "#A001-bam",
+      "@type": "Dataset",
+      "name": "A001 BAM files",
+      "description": "Alignment files for sample A001",
+      "identifier": "A001-bam",
+      "hasPart": [
+        {
+          "@id": "batches/batch-001/data/A001.bam"
+        },
+        {
+          "@id": "batches/batch-001/data/A001.bam.bai"
+        }
+      ]
+    },
+    {
+      "@id": "#A001-vcf",
+      "@type": "Dataset",
+      "name": "A001 VCF files",
+      "description": "Variant call files for sample A001",
+      "identifier": "A001-vcf",
+      "hasPart": [
+        {
+          "@id": "batches/batch-001/data/A001.vcf"
+        },
+        {
+          "@id": "batches/batch-001/data/A001.vcf.tbi"
+        }
+      ]
+    },
+    {
+      "@id": "#001-history-001",
+      "@type": "CreateAction",
+      "result": [
+        {
+          "@id": "#A001-bam"
+        },
+        {
+          "@id": "#A001-vcf"
+        }
+      ],
+      "name": "create: bam, vcf",
+      "description": "Initial submission for sample A001",
+      "endTime": "2025-07-29",
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#001-history-002",
+      "@type": "UpdateAction",
+      "result": [
+        {
+          "@id": "#A001-fastq"
+        }
+      ],
+      "name": "create: fastq",
+      "description": "fastq submission for A001",
+      "endTime": "2025-07-29",
+      "agent": {
+        "@id": "https://orcid.org/0000-0001-5152-5307"
+      },
+      "instrument": {
+        "@id": "#data-submission-pipeline"
+      },
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#A002-fastq",
+      "@type": "Dataset",
+      "name": "A002 FASTQ files",
+      "description": "Sequencing reads for sample A002",
+      "identifier": "A002-fastq",
+      "hasPart": [
+        {
+          "@id": "batches/batch-002/data/A002_R1.fastq"
+        },
+        {
+          "@id": "batches/batch-003/data/A002_R2.fastq"
+        }
+      ]
+    },
+    {
+      "@id": "#A002-bam",
+      "@type": "Dataset",
+      "name": "A002 BAM files",
+      "description": "Alignment files for sample A002",
+      "identifier": "A002-bam",
+      "hasPart": [
+        {
+          "@id": "batches/batch-002/data/A002.bam"
+        },
+        {
+          "@id": "batches/batch-002/data/A002.bam.bai"
+        },
+        {
+          "@id": "batches/batch-003/data/A002.bam"
+        },
+        {
+          "@id": "batches/batch-003/data/A002.bam.bai"
+        }
+      ]
+    },
+    {
+      "@id": "#A002-vcf",
+      "@type": "Dataset",
+      "name": "A002 VCF files",
+      "description": "Variant call files for sample A002",
+      "identifier": "A002-vcf",
+      "hasPart": [
+        {
+          "@id": "batches/batch-002/data/A002.vcf"
+        },
+        {
+          "@id": "batches/batch-002/data/A002.vcf.tbi"
+        }
+      ]
+    },
+    {
+      "@id": "#002-history-001",
+      "@type": "CreateAction",
+      "result": [
+        {
+          "@id": "#A002-bam"
+        },
+        {
+          "@id": "#A002-vcf"
+        },
+        {
+          "@id": "#A002-fastq"
+        }
+      ],
+      "name": "create: bam, vcf, fastq",
+      "description": "Submission bam, vcf, fastq for A002",
+      "endTime": "2025-07-29",
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#002-history-002",
+      "@type": "UpdateAction",
+      "result": [
+        {
+          "@id": "#A002-fastq"
+        }
+      ],
+      "name": "update: fastq",
+      "description": "Complete missing fastq pair file",
+      "endTime": "2025-07-29",
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#002-history-003",
+      "@type": "UpdateAction",
+      "result": [
+        {
+          "@id": "#A002-bam"
+        }
+      ],
+      "name": "update: bam",
+      "description": "Replace old bam files with new ones",
+      "endTime": "2025-07-29",
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "#A003-fastq",
+      "@type": "Dataset",
+      "name": "A003 FASTQ files",
+      "description": "Sequencing reads for sample A003",
+      "identifier": "A003-fastq",
+      "hasPart": [
+        {
+          "@id": "batches/batch-003/data/A003_R1.fastq"
+        },
+        {
+          "@id": "batches/batch-003/data/A003_R2.fastq"
+        }
+      ]
+    },
+    {
+      "@id": "#A003-bam",
+      "@type": "Dataset",
+      "name": "A003 BAM files",
+      "description": "Alignment files for sample A003",
+      "identifier": "A003-bam",
+      "hasPart": [
+        {
+          "@id": "batches/batch-003/data/A003.bam"
+        },
+        {
+          "@id": "batches/batch-003/data/A003.bam.bai"
+        }
+      ]
+    },
+    {
+      "@id": "#A003-vcf",
+      "@type": "Dataset",
+      "name": "A003 VCF files",
+      "description": "Variant call files for sample A003",
+      "identifier": "A003-vcf",
+      "hasPart": [
+        {
+          "@id": "batches/batch-003/data/A003.vcf"
+        },
+        {
+          "@id": "batches/batch-003/data/A003.vcf.tbi"
+        }
+      ]
+    },
+    {
+      "@id": "#003-history-001",
+      "@type": "CreateAction",
+      "result": [
+        {
+          "@id": "#A003-bam"
+        },
+        {
+          "@id": "#A003-vcf"
+        },
+        {
+          "@id": "#A003-fastq"
+        }
+      ],
+      "name": "create: bam, vcf, fastq",
+      "description": "Submission bam, vcf, fastq for A003",
+      "endTime": "2025-07-29",
+      "actionStatus": {
+        "@id": "http://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "@id": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "@type": "CreativeWork",
+      "name": "CC BY-NC-ND 4.0",
+      "description": "Attribution-NonCommercial-NoDerivatives 4.0 International"
+    }
+  ]
+}
+</script>
+
+    
+<!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
+<script src="https://unpkg.com/ro-crate-html@0.1/dist/ro-crate-dynamic.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<meta charset='utf-8'/>
+<style>
+
+table.table {
+  padding-bottom: 300px;
+}
+</style>
+</head>
+
+
+<body>
+
+  <nav class="navbar">
+
+    <ul class="nav navbar-nav" >
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;Study-A: Genomics Research Dataset</span></a></li>
+    </ul>
+
+  </nav>
+<div class="container">
+<div class="jumbotron">
+<h4 class="citation"></h4>
+<h3 class="item_name">Study-A: Genomics Research Dataset</h3>
+
+
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>Study-A: Genomics Research Dataset</span> in JSON-LD format</a>
+
+
+<div id="check"></div>
+
+
+</div>
+
+
+
+<div id="summary">
+<div class='all-meta'>
+            <div>
+                <h3> Study-A: Genomics Research Dataset</h3>
+                
+                
+                
+                
+        <div id="./">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>./</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Study-A: Genomics Research Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Complete genomics research dataset containing sequencing data, alignments, and variant calls organized in chronological batches. This study includes FASTQ sequencing reads, BAM alignment files, and VCF variant files for multiple samples processed across three submission batches.</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">datePublished<span>&nbsp;</span><a href="http://schema.org/datePublished">[?]</a></th>
+            <td style='text-align:left'><span>2025-07-29</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">publisher<span>&nbsp;</span><a href="http://schema.org/publisher">[?]</a></th>
+            <td style='text-align:left'><a href="#https%3A//ror.org/01ej9dk98">The University of Melbourne</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><a href="http://spdx.org/licenses/MIT">http://spdx.org/licenses/MIT</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23A001">Sample A001</a></li>
+                        
+                        <li><a href="#%23A002">Sample A002</a></li>
+                        
+                        <li><a href="#%23A003">Sample A003</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">about<span>&nbsp;</span><a href="http://schema.org/about">[?]</a></th>
+            <td style='text-align:left'><a href="#ro-crate-metadata.json">ro-crate-metadata.json</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3><a href="https://ror.org/01ej9dk98">Go to: </a> The University of Melbourne</h3>
+                
+                
+                
+                
+        <div id="https://ror.org/01ej9dk98">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://ror.org/01ej9dk98">https://ror.org/01ej9dk98</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>The University of Melbourne</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Organization</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>UMCCR part of the University of Melbourne</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">url<span>&nbsp;</span><a href="http://schema.org/url">[?]</a></th>
+            <td style='text-align:left'><a href="https://umccr.org/">https://umccr.org/</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">publisher<span>&nbsp;</span><a href="http://schema.org/publisher">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Study-A: Genomics Research Dataset</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/><hr/><br/><br/>
+            <div>
+                <h3> Sample A001</h3>
+                
+                
+                
+                
+        <div id="#A001">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Sample A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Complete genomics dataset for sample A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><span>A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23A001-fastq">A001 FASTQ files</a></li>
+                        
+                        <li><a href="#%23A001-bam">A001 BAM files</a></li>
+                        
+                        <li><a href="#%23A001-vcf">A001 VCF files</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23001-history-001">create: bam, vcf</a></li>
+                        
+                        <li><a href="#%23001-history-002">create: fastq</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Study-A: Genomics Research Dataset</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Sample A002</h3>
+                
+                
+                
+                
+        <div id="#A002">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#A002</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Sample A002</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Complete genomics dataset for sample A002</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><span>A002</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23A002-fastq">A002 FASTQ files</a></li>
+                        
+                        <li><a href="#%23A002-bam">A002 BAM files</a></li>
+                        
+                        <li><a href="#%23A002-vcf">A002 VCF files</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23002-history-001">create: bam, vcf, fastq</a></li>
+                        
+                        <li><a href="#%23002-history-002">update: fastq</a></li>
+                        
+                        <li><a href="#%23002-history-003">update: bam</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Study-A: Genomics Research Dataset</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Sample A003</h3>
+                
+                
+                
+                
+        <div id="#A003">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Sample A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Complete genomics dataset for sample A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><span>A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23A003-fastq">A003 FASTQ files</a></li>
+                        
+                        <li><a href="#%23A003-bam">A003 BAM files</a></li>
+                        
+                        <li><a href="#%23A003-vcf">A003 VCF files</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><a href="#%23002-history-001">create: bam, vcf, fastq</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Study-A: Genomics Research Dataset</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/></div>
+</div>
+
+
+
+
+
+</body>
+</html>
