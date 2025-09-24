@@ -208,3 +208,5 @@ __marimo__/
 
 # macOS Finder metadata files
 .DS_Store
+
+node_modules/

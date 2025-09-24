@@ -107,6 +107,7 @@
       "@id": "#unique-dataset-rule",
       "@type": "Constraint",
       "name": "Identifier Dataset Requirement",
+      "category": "MUST",
       "description": "Each Dataset MUST have an 'identifier' property for uniqueness, MUST reference at least one 'Collection' entity (see '#artifact-collection-rule'), and MUST mention entities representing its update history (see '#unique-dataset-history'), typically reflecting changes after each batch submission.",
       "hasPart": [
         {
@@ -121,6 +122,7 @@
       "@id": "#artifact-collection-rule",
       "@type": "Constraint",
       "name": "Artifact Collection Requirement",
+      "category": "MUST",
       "description": "An artifact 'Collection' groups related artifacts and MUST reference one or more 'File' entities within the same category. Example: a VCF file and its index file form a single artifact collection. Assign '@id' using the identifier and artifact type (e.g., 'A001-vcf') for consistency.",
       "hasPart": [
         {
@@ -139,6 +141,7 @@
       "@id": "#unique-dataset-history",
       "@type": "Constraint",
       "name": "Dataset History Requirement",
+      "category": "MUST",
       "reviewBody": "Each history entity '@id' is constructed as: <dataset-identifier>-<increment>. For each batch update, record: (1) type of change ('CreateAction', 'UpdateAction', 'DeleteAction'), (2) result (points to the unique artifact), (3) summary of the change, (4) endTime of the RO-Crate submission, and (5) actionStatus (indicating the result)."
     },
     {

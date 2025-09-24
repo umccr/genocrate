@@ -55,6 +55,7 @@
       "@id": "#unique-dataset-rule",
       "@type": "Constraint",
       "name": "Identifier Dataset Requirement",
+      "category": "MUST",
       "description": "Each Dataset MUST include an 'identifier' property for uniqueness, and MUST reference at least one 'Collection' entity (see '#artifact-collection-rule').",
       "hasPart": [{ "@id": "#artifact-collection-rule" }]
     },
@@ -62,6 +63,7 @@
       "@id": "#artifact-collection-rule",
       "@type": "Constraint",
       "name": "Artifact Collection Requirement",
+      "category": "MUST",
       "description": "An artifact 'Collection' groups related artifacts and MUST reference one or more 'File' entities within the same category. Example: a VCF file and its index file form a single artifact collection. Assign '@id' using the identifier and artifact type (e.g., 'A001-vcf') for consistency.",
       "hasPart": [{ "@id": "#file-rule" }]
     },
