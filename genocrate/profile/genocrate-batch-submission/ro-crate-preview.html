@@ -1,0 +1,463 @@
+
+
+<html>
+<head>
+
+
+<script type="application/ld+json"> 
+  {
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context"
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        },
+        {
+          "@id": "https://www.researchobject.org/ro-crate/specification/1.2/profiles"
+        }
+      ],
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "description": "GenoCrate Batch Genomic Profile: a specialization of RO-Crate for packaging genomic data submissions. All files are grouped by artifact type, and artifact groups are linked to a single participant identifier, ensuring a clear, consistent structure for each data batch.",
+      "@type": "Dataset",
+      "datePublished": "2025-09-22",
+      "name": "Genocrate Batch Profile",
+      "version": "0.0.1",
+      "hasPart": [
+        {
+          "@id": "#root-dataset-rule"
+        },
+        {
+          "@id": "#use-bag-it"
+        },
+        {
+          "@id": "#hierarchy-guide"
+        },
+        {
+          "@id": "example/"
+        }
+      ],
+      "license": {
+        "@id": "http://spdx.org/licenses/MIT"
+      }
+    },
+    {
+      "@id": "#root-dataset-rule",
+      "@type": "Constraint",
+      "name": "Root Dataset Requirement",
+      "category": "MUST",
+      "description": "The root Dataset MUST use 'hasPart' to reference at least one 'Dataset' entity, as described by '#unique-dataset-rule'.",
+      "hasPart": [
+        {
+          "@id": "#unique-dataset-rule"
+        }
+      ]
+    },
+    {
+      "@id": "#use-bag-it",
+      "@type": "Recommendation",
+      "name": "Use BAG IT format",
+      "description": "The submission SHOULD follow the BagIt specification for reliable packaging and transfer.",
+      "category": "SHOULD",
+      "conformsTo": {
+        "@id": "https://bagit-profiles.github.io/bagit-profiles-specification/"
+      }
+    },
+    {
+      "@id": "#hierarchy-guide",
+      "@type": "Guide",
+      "name": "Hierarchy Overview",
+      "description": "Data hierarchy: Root Dataset → Dataset → Collection → File. Each level references its children using 'hasPart'. Constraints specify requirements for each entity type.",
+      "mentions": [
+        {
+          "@id": "#root-dataset-rule"
+        },
+        {
+          "@id": "#unique-dataset-rule"
+        },
+        {
+          "@id": "#artifact-collection-rule"
+        },
+        {
+          "@id": "#file-rule"
+        }
+      ]
+    },
+    {
+      "@id": "example/",
+      "@type": "Dataset",
+      "name": "Example RO-Crate following this profile",
+      "license": {
+        "@id": "http://spdx.org/licenses/MIT"
+      },
+      "subjectOf": [
+        {
+          "@id": "example/ro-crate-metadata.json"
+        },
+        {
+          "@id": "example/ro-crate-preview.html"
+        }
+      ]
+    },
+    {
+      "@id": "http://spdx.org/licenses/MIT",
+      "@type": "DefinedTerm",
+      "termCode": "MIT",
+      "identifier": "MIT",
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "@id": "#unique-dataset-rule",
+      "@type": "Constraint",
+      "name": "Identifier Dataset Requirement",
+      "category": "MUST",
+      "description": "Each Dataset MUST include an 'identifier' property for uniqueness, and MUST reference at least one 'Collection' entity (see '#artifact-collection-rule').",
+      "hasPart": [
+        {
+          "@id": "#artifact-collection-rule"
+        }
+      ]
+    },
+    {
+      "@id": "#artifact-collection-rule",
+      "@type": "Constraint",
+      "name": "Artifact Collection Requirement",
+      "category": "MUST",
+      "description": "An artifact 'Collection' groups related artifacts and MUST reference one or more 'File' entities within the same category. Example: a VCF file and its index file form a single artifact collection. Assign '@id' using the identifier and artifact type (e.g., 'A001-vcf') for consistency.",
+      "hasPart": [
+        {
+          "@id": "#file-rule"
+        }
+      ]
+    },
+    {
+      "@id": "#file-rule",
+      "@type": "Constraint",
+      "name": "File Requirement",
+      "category": "MUST",
+      "description": "Each file entity MUST have '@type': 'File'. Listing in the 'hasPart' property of its parent artifact is context-dependent."
+    },
+    {
+      "@id": "example/ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        }
+      ],
+      "encodingFormat": "application/json",
+      "license": {
+        "@id": "http://spdx.org/licenses/MIT"
+      }
+    },
+    {
+      "@id": "example/ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "encodingFormat": "text/html"
+    }
+  ]
+}
+</script>
+
+    
+<!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
+<script src="https://unpkg.com/ro-crate-html@0.1/dist/ro-crate-dynamic.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<meta charset='utf-8'/>
+<style>
+
+table.table {
+  padding-bottom: 300px;
+}
+</style>
+</head>
+
+
+<body>
+
+  <nav class="navbar">
+
+    <ul class="nav navbar-nav" >
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;Genocrate Batch Profile</span></a></li>
+    </ul>
+
+  </nav>
+<div class="container">
+<div class="jumbotron">
+<h4 class="citation"></h4>
+<h3 class="item_name">Genocrate Batch Profile</h3>
+
+
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>Genocrate Batch Profile</span> in JSON-LD format</a>
+
+
+<div id="check"></div>
+
+
+</div>
+
+
+
+<div id="summary">
+<div class='all-meta'>
+            <div>
+                <h3> Genocrate Batch Profile</h3>
+                
+                
+                
+                
+        <div id="./">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>./</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Genocrate Batch Profile</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>GenoCrate Batch Genomic Profile: a specialization of RO-Crate for packaging genomic data submissions. All files are grouped by artifact type, and artifact groups are linked to a single participant identifier, ensuring a clear, consistent structure for each data batch.</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">datePublished<span>&nbsp;</span><a href="http://schema.org/datePublished">[?]</a></th>
+            <td style='text-align:left'><span>2025-09-22</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">version<span>&nbsp;</span><a href="http://schema.org/version">[?]</a></th>
+            <td style='text-align:left'><span>0.0.1</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23root-dataset-rule">Root Dataset Requirement</a></li>
+                        
+                        <li><a href="#%23use-bag-it">Use BAG IT format</a></li>
+                        
+                        <li><a href="#%23hierarchy-guide">Hierarchy Overview</a></li>
+                        
+                        <li><a href="#example/">Example RO-Crate following this profile</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><a href="#http%3A//spdx.org/licenses/MIT">MIT License</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">about<span>&nbsp;</span><a href="http://schema.org/about">[?]</a></th>
+            <td style='text-align:left'><a href="#ro-crate-metadata.json">ro-crate-metadata.json</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Root Dataset Requirement</h3>
+                
+                
+                
+                
+        <div id="#root-dataset-rule">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#root-dataset-rule</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Root Dataset Requirement</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Constraint</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>The root Dataset MUST use 'hasPart' to reference at least one 'Dataset' entity, as described by '#unique-dataset-rule'.</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">category<span>&nbsp;</span><a href="http://schema.org/category">[?]</a></th>
+            <td style='text-align:left'><span>MUST</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#%23unique-dataset-rule">Identifier Dataset Requirement</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><a href="#%23hierarchy-guide">Hierarchy Overview</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Use BAG IT format</h3>
+                
+                
+                
+                
+        <div id="#use-bag-it">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#use-bag-it</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Use BAG IT format</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Recommendation</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>The submission SHOULD follow the BagIt specification for reliable packaging and transfer.</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">category<span>&nbsp;</span><a href="http://schema.org/category">[?]</a></th>
+            <td style='text-align:left'><span>SHOULD</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
+            <td style='text-align:left'><a href="https://bagit-profiles.github.io/bagit-profiles-specification/">https://bagit-profiles.github.io/bagit-profiles-specification/</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Hierarchy Overview</h3>
+                
+                
+                
+                
+        <div id="#hierarchy-guide">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#hierarchy-guide</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Hierarchy Overview</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Guide</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Data hierarchy: Root Dataset → Dataset → Collection → File. Each level references its children using 'hasPart'. Constraints specify requirements for each entity type.</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23root-dataset-rule">Root Dataset Requirement</a></li>
+                        
+                        <li><a href="#%23unique-dataset-rule">Identifier Dataset Requirement</a></li>
+                        
+                        <li><a href="#%23artifact-collection-rule">Artifact Collection Requirement</a></li>
+                        
+                        <li><a href="#%23file-rule">File Requirement</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Example RO-Crate following this profile</h3>
+                
+                
+                
+                
+        <div id="example/">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>example/</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Example RO-Crate following this profile</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><a href="#http%3A//spdx.org/licenses/MIT">MIT License</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">subjectOf<span>&nbsp;</span><a href="http://schema.org/subjectOf">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#example/ro-crate-metadata.json">example/ro-crate-metadata.json</a></li>
+                        
+                        <li><a href="#example/ro-crate-preview.html">example/ro-crate-preview.html</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3><a href="http://spdx.org/licenses/MIT">Go to: </a> MIT License</h3>
+                
+                
+                
+                
+        <div id="http://spdx.org/licenses/MIT">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="http://spdx.org/licenses/MIT">http://spdx.org/licenses/MIT</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>MIT License</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>DefinedTerm</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">termCode<span>&nbsp;</span><a href="http://schema.org/termCode">[?]</a></th>
+            <td style='text-align:left'><span>MIT</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><span>MIT</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">url<span>&nbsp;</span><a href="http://schema.org/url">[?]</a></th>
+            <td style='text-align:left'><a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#./">Genocrate Batch Profile</a></li>
+                        
+                        <li><a href="#example/">Example RO-Crate following this profile</a></li>
+                        
+                        <li><a href="#example/ro-crate-metadata.json">example/ro-crate-metadata.json</a></li>
+                        </ul></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/></div>
+</div>
+
+
+
+
+
+</body>
+</html>

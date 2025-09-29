@@ -1,0 +1,328 @@
+
+
+<html>
+<head>
+
+
+<script type="application/ld+json"> 
+  {
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context"
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "batch-001",
+      "description": "Genomics data batch containing BAM alignment and VCF variant files for sample A001",
+      "datePublished": "2025-07-29",
+      "publisher": {
+        "@id": "https://ror.org/01ej9dk98"
+      },
+      "license": {
+        "@id": "http://spdx.org/licenses/MIT"
+      },
+      "hasPart": [
+        {
+          "@id": "#A001"
+        }
+      ]
+    },
+    {
+      "@id": "https://ror.org/01ej9dk98",
+      "@type": "Organization",
+      "name": "The University of Melbourne",
+      "description": "UMCCR part of the University of Melbourne",
+      "url": "https://umccr.org/"
+    },
+    {
+      "@id": "http://spdx.org/licenses/MIT",
+      "@type": "DefinedTerm",
+      "termCode": "MIT",
+      "identifier": "MIT",
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "@id": "#A001",
+      "@type": "Dataset",
+      "name": "A001",
+      "description": "Dataset for A001",
+      "identifier": "A001",
+      "hasPart": [
+        {
+          "@id": "#A001-bam"
+        },
+        {
+          "@id": "#A001-vcf"
+        }
+      ]
+    },
+    {
+      "@id": "#A001-bam",
+      "@type": "Collection",
+      "name": "BAM files for A001",
+      "description": "Binary alignment files and indices",
+      "identifier": "A001-bam",
+      "hasPart": [
+        {
+          "@id": "A001.bam"
+        },
+        {
+          "@id": "A001.bam.bai"
+        }
+      ]
+    },
+    {
+      "@id": "#A001-vcf",
+      "@type": "Collection",
+      "name": "VCF files for A001",
+      "description": "Variant call files and indices",
+      "identifier": "A001-vcf",
+      "hasPart": [
+        {
+          "@id": "A001.vcf"
+        },
+        {
+          "@id": "A001.vcf.tbi"
+        }
+      ]
+    },
+    {
+      "@id": "A001.bam",
+      "@type": "File",
+      "name": "BAM alignment file for sample A001",
+      "description": "Binary Alignment/Map file containing aligned sequencing reads"
+    },
+    {
+      "@id": "A001.bam.bai",
+      "@type": "File",
+      "name": "BAM index file for sample A001",
+      "description": "Binary index file for the corresponding BAM file to enable random access"
+    },
+    {
+      "@id": "A001.vcf",
+      "@type": "File",
+      "name": "VCF variant file for sample A001",
+      "description": "Variant Call Format file containing genetic variants"
+    },
+    {
+      "@id": "A001.vcf.tbi",
+      "@type": "File",
+      "name": "VCF index file for sample A001",
+      "description": "Tabix index file for the corresponding VCF file to enable random access"
+    }
+  ]
+}
+</script>
+
+    
+<!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
+<script src="https://unpkg.com/ro-crate-html@0.1/dist/ro-crate-dynamic.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<meta charset='utf-8'/>
+<style>
+
+table.table {
+  padding-bottom: 300px;
+}
+</style>
+</head>
+
+
+<body>
+
+  <nav class="navbar">
+
+    <ul class="nav navbar-nav" >
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;batch-001</span></a></li>
+    </ul>
+
+  </nav>
+<div class="container">
+<div class="jumbotron">
+<h4 class="citation"></h4>
+<h3 class="item_name">batch-001</h3>
+
+
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>batch-001</span> in JSON-LD format</a>
+
+
+<div id="check"></div>
+
+
+</div>
+
+
+
+<div id="summary">
+<div class='all-meta'>
+            <div>
+                <h3> batch-001</h3>
+                
+                
+                
+                
+        <div id="./">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>./</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>batch-001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Genomics data batch containing BAM alignment and VCF variant files for sample A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">datePublished<span>&nbsp;</span><a href="http://schema.org/datePublished">[?]</a></th>
+            <td style='text-align:left'><span>2025-07-29</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">publisher<span>&nbsp;</span><a href="http://schema.org/publisher">[?]</a></th>
+            <td style='text-align:left'><a href="#https%3A//ror.org/01ej9dk98">The University of Melbourne</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><a href="#http%3A//spdx.org/licenses/MIT">MIT License</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#%23A001">A001</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">about<span>&nbsp;</span><a href="http://schema.org/about">[?]</a></th>
+            <td style='text-align:left'><a href="#ro-crate-metadata.json">ro-crate-metadata.json</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3><a href="https://ror.org/01ej9dk98">Go to: </a> The University of Melbourne</h3>
+                
+                
+                
+                
+        <div id="https://ror.org/01ej9dk98">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://ror.org/01ej9dk98">https://ror.org/01ej9dk98</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>The University of Melbourne</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Organization</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>UMCCR part of the University of Melbourne</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">url<span>&nbsp;</span><a href="http://schema.org/url">[?]</a></th>
+            <td style='text-align:left'><a href="https://umccr.org/">https://umccr.org/</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">publisher<span>&nbsp;</span><a href="http://schema.org/publisher">[?]</a></th>
+            <td style='text-align:left'><a href="#./">batch-001</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3><a href="http://spdx.org/licenses/MIT">Go to: </a> MIT License</h3>
+                
+                
+                
+                
+        <div id="http://spdx.org/licenses/MIT">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="http://spdx.org/licenses/MIT">http://spdx.org/licenses/MIT</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>MIT License</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>DefinedTerm</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">termCode<span>&nbsp;</span><a href="http://schema.org/termCode">[?]</a></th>
+            <td style='text-align:left'><span>MIT</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><span>MIT</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">url<span>&nbsp;</span><a href="http://schema.org/url">[?]</a></th>
+            <td style='text-align:left'><a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><a href="#./">batch-001</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> A001</h3>
+                
+                
+                
+                
+        <div id="#A001">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>Dataset for A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><span>A001</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23A001-bam">BAM files for A001</a></li>
+                        
+                        <li><a href="#%23A001-vcf">VCF files for A001</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">batch-001</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/></div>
+</div>
+
+
+
+
+
+</body>
+</html>

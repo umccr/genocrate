@@ -23,19 +23,24 @@ You can also use:
 ```bash
 python -m genocrate --help
 ```
+
 ## Development
 
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
+
 ```bash
-cd genocrate
-python -m venv venv
-source venv/bin/activate
+uv venv
+source .venv/bin/activate
 ```
+
 Now install the dependencies and test dependencies:
+
 ```bash
 pip install -e '.[test]'
 ```
+
 To run the tests:
+
 ```bash
 python -m pytest
 ```
