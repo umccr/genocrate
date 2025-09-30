@@ -22,7 +22,7 @@ Issues = "https://github.com/umccr/genocrate/issues"
 CI = "https://github.com/umccr/genocrate/actions"
 
 [project.scripts]
-genocrate = "genocrate.cli:cli"
+genocrate = "genocrate:cli"
 
 [project.optional-dependencies]
 test = ["pytest"]
