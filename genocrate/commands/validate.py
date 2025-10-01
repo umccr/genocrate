@@ -121,7 +121,7 @@ def is_md5_checksum_valid(manifest_file_path: str, processes: int = 1) -> bool:
 
 @cli.command(name="validate-batch")
 @click.argument(
-    'path', type=click.Path(exists=True, dir_okay=True, file_okay=True, readable=True)
+    'path', type=click.Path(exists=True, dir_okay=True, file_okay=True, readable=True),
 )
 @click.option(
     '--validation-type', '-t',
@@ -138,6 +138,9 @@ def is_md5_checksum_valid(manifest_file_path: str, processes: int = 1) -> bool:
 def validate_batch(path, validation_type, parallel):
     """
     Validate a batch of files or bags for BagIt or MD5 compliance.
+
+    :param PATH: Directory containing a BagIt-compliant batch (for 'bagit' type) or a manifest file with MD5 checksums (for 'md5' type)"
+
     """
     if validation_type == 'bagit':
         click.echo(f'Validating for bagIt compliance ({path})')
