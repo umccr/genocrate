@@ -3,12 +3,12 @@ name = "genocrate"
 version = "0.1"
 description = "CLI suite"
 readme = "README.md"
-authors = [{name = "William Intan"}]
-license = "Apache-2.0"
+authors = [{ name = "William Intan" }]
+license = { "text" = "Apache-2.0" }
 requires-python = ">=3.8"
 classifiers = []
 dependencies = [
-    "click"
+    "click", "bagit"
 ]
 
 [build-system]
@@ -22,7 +22,7 @@ Issues = "https://github.com/umccr/genocrate/issues"
 CI = "https://github.com/umccr/genocrate/actions"
 
 [project.scripts]
-genocrate = "genocrate.cli:cli"
+genocrate = "genocrate:cli"
 
 [project.optional-dependencies]
 test = ["pytest"]

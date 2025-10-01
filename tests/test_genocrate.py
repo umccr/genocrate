@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from genocrate.cli import cli
+from genocrate.main import cli
 
 
 def test_version():
@@ -8,3 +8,4 @@ def test_version():
         result = runner.invoke(cli, ["--version"])
         assert result.exit_code == 0
         assert result.output.startswith("cli, version ")
+
