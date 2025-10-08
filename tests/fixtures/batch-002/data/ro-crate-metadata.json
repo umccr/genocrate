@@ -76,13 +76,6 @@
       "name": "VCF variant file for sample A001",
       "description": "Variant Call Format file containing genetic variants",
       "identifier": "A001.vcf"
-    },
-    {
-      "@id": "A001.vcf.tbi",
-      "@type": "File",
-      "name": "VCF index file for sample A001",
-      "description": "Tabix index file for the corresponding VCF file to enable random access",
-      "identifier": "A001.vcf.tbi"
     }
   ]
 }

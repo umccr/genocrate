@@ -5,9 +5,6 @@ import hashlib
 import multiprocessing
 
 import click
-from rocrate_validator.models import Severity
-from pathlib import Path
-from rdflib import URIRef
 from genocrate.main import cli
 import bagit
 from rocrate_validator import services, models
@@ -82,23 +79,7 @@ def compute_hashes(file_list, processes: int = 1) -> list:
         return pool.map(_calc_hashes, file_list)
 
 
-def list_files_exclude_manifest(manifest_path: str) -> list:
-    """
-    List all files in the manifest's directory, excluding the manifest itself.
-
-    :param manifest_path: Path to the manifest file
-    :return: List of file paths
-    """
-    directory = os.path.dirname(manifest_path)
-    manifest_file = os.path.basename(manifest_path)
-    return [
-        os.path.join(directory, f)
-        for f in os.listdir(directory)
-        if os.path.isfile(os.path.join(directory, f)) and f != manifest_file
-    ]
-
-
-def is_md5_checksum_valid(manifest_file_path: str, processes: int = 1) -> bool:
+def is_md5_checksum_valid(manifest_file_path: str, data_directory: str, processes: int = 1) -> bool:
     """
     Validate MD5 checksums of files against a manifest.
 
@@ -107,19 +88,27 @@ def is_md5_checksum_valid(manifest_file_path: str, processes: int = 1) -> bool:
     :return: True if all checksums match, False otherwise
     """
     errors = []
-    files = list_files_exclude_manifest(manifest_file_path)
+    files = [
+        os.path.join(data_directory, f)
+        for f in os.listdir(data_directory)
+        if os.path.isfile(os.path.join(data_directory, f))
+    ]
+
     hash_results = compute_hashes(files, processes=processes)
     manifest = read_manifest(manifest_file_path)
 
     for filepath, md5 in hash_results:
-        filename = os.path.basename(filepath)
-        expected_md5 = manifest.get(filename)
+        # Convert absolute path to relative path matching manifest format
+        relative_path = os.path.relpath(filepath, start=os.path.dirname(data_directory))
+        expected_md5 = manifest.get(relative_path)
         if expected_md5 is None:
-            errors.append(f"File {filename} not found in manifest")
+            errors.append(f"File {relative_path} not found in manifest")
         elif md5 != expected_md5:
-            errors.append(f"MD5 mismatch for {filename}: expected {expected_md5}, calculated {md5}")
+            errors.append(f"MD5 mismatch for {relative_path}: expected {expected_md5}, calculated {md5}")
 
-    print(json.dumps(errors, indent=4))
+    if errors:
+        click.echo(json.dumps(errors, indent=4))
+
     return not errors
 
 
@@ -142,7 +131,6 @@ def is_md5_checksum_valid(manifest_file_path: str, processes: int = 1) -> bool:
 @click.option(
     '--skip-integrity-validation',
     is_flag=False)
-
 def validate_batch(path, validation_type, parallel, skip_integrity_validation):
     """
     Validate a batch of files or bags for BagIt or MD5 compliance.
@@ -150,8 +138,18 @@ def validate_batch(path, validation_type, parallel, skip_integrity_validation):
     :param PATH: Directory containing a BagIt-compliant batch (for 'bagit' type) or a manifest file with MD5 checksums (for 'md5' type)"
 
     """
+    dir_path = path
+    manifest_file_path = ''
 
-    if not is_ro_crate_valid(f"{path}/data"):
+    # if path is a file, ignore cd to the data directory
+    if os.path.isfile(path):
+        if validation_type != 'md5':
+            click.echo("When providing a file, the validation type must be 'md5'")
+            sys.exit(1)
+        manifest_file_path = path
+        dir_path = os.path.dirname(path)
+
+    if not is_ro_crate_valid(f"{dir_path}/data"):
         click.echo("RO-Crate metadata is invalid!")
         sys.exit(1)
 
@@ -165,13 +163,13 @@ def validate_batch(path, validation_type, parallel, skip_integrity_validation):
 
     # Integrity validation
     if validation_type == 'bagit':
-        click.echo(f'Validating for BagIt compliance ({path})')
-        if not is_valid_bagit(path, processes=parallel):
+        click.echo(f'Validating for BagIt compliance ({dir_path})')
+        if not is_valid_bagit(dir_path, processes=parallel):
             click.echo('Bag validation failed.')
             sys.exit(1)
     elif validation_type == 'md5':
-        click.echo(f'Validating files from md5sum ({path})')
-        if not is_md5_checksum_valid(path, processes=parallel):
+        click.echo(f'Validating files from md5sum ({manifest_file_path})')
+        if not is_md5_checksum_valid(manifest_file_path, f'{dir_path}/data', processes=parallel):
             click.echo('MD5 checksum validation failed.')
             sys.exit(1)
 
