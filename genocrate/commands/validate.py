@@ -5,8 +5,12 @@ import hashlib
 import multiprocessing
 
 import click
+from rocrate_validator.models import Severity
+from pathlib import Path
+from rdflib import URIRef
 from genocrate.main import cli
 import bagit
+from rocrate_validator import services, models
 
 # Block size used when reading files for hashing
 HASH_BLOCK_SIZE = 512 * 1024
@@ -135,25 +139,69 @@ def is_md5_checksum_valid(manifest_file_path: str, processes: int = 1) -> bool:
     default=1,
     help="Number of processes to run in parallel"
 )
-def validate_batch(path, validation_type, parallel):
+@click.option(
+    '--skip-integrity-validation',
+    is_flag=False)
+
+def validate_batch(path, validation_type, parallel, skip_integrity_validation):
     """
     Validate a batch of files or bags for BagIt or MD5 compliance.
 
     :param PATH: Directory containing a BagIt-compliant batch (for 'bagit' type) or a manifest file with MD5 checksums (for 'md5' type)"
 
     """
+
+    if not is_ro_crate_valid(f"{path}/data"):
+        click.echo("RO-Crate metadata is invalid!")
+        sys.exit(1)
+
+    click.echo("RO-Crate metadata is valid!")
+
+    # Skip integrity validation if requested
+    if skip_integrity_validation:
+        click.echo('Skipping integrity validation as requested.')
+        click.echo('Validation successful!')
+        sys.exit(0)
+
+    # Integrity validation
     if validation_type == 'bagit':
-        click.echo(f'Validating for bagIt compliance ({path})')
-        is_valid = is_valid_bagit(path, processes=parallel)
-        if not is_valid:
+        click.echo(f'Validating for BagIt compliance ({path})')
+        if not is_valid_bagit(path, processes=parallel):
             click.echo('Bag validation failed.')
             sys.exit(1)
     elif validation_type == 'md5':
         click.echo(f'Validating files from md5sum ({path})')
-        is_valid = is_md5_checksum_valid(path, processes=parallel)
-        if not is_valid:
+        if not is_md5_checksum_valid(path, processes=parallel):
             click.echo('MD5 checksum validation failed.')
             sys.exit(1)
 
-    click.echo('Validation successful.')
+    click.echo('Validation successful!')
     sys.exit(0)
+
+
+def is_ro_crate_valid(path: str) -> bool:
+    # Create an instance of `ValidationSettings` class to configure the validation
+    settings = services.ValidationSettings(
+        # Set the path to the RO-Crate root directory
+        rocrate_uri=path,
+        # Set the identifier of the RO-Crate profile to use for validation.
+        # If not set, the system will attempt to automatically determine the appropriate validation profile.
+        profile_identifier='genocrate-batch-submission',
+        # Set the requirement level for the validation
+        requirement_severity=models.Severity.REQUIRED,
+        profiles_path=os.path.join(os.path.dirname(__file__), "../profile/genocrate-batch-submission/rules"),
+
+    )
+    # Call the validation service with the settings
+    result = services.validate(settings)
+
+    # Check if the validation was successful
+    if not result.has_issues():
+        return True
+    else:
+        for issue in result.get_issues():
+            # Every issue object has a reference to the check that failed, the severity of the issue, and a message describing the issue.
+            click.echo(
+                f"Detected issue of severity {issue.severity.name} with check \"{issue.check.identifier}\": {issue.message}"
+            )
+        return False
