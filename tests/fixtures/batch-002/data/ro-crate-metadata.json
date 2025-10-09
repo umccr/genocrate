@@ -17,10 +17,10 @@
       "license": {
         "@id": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
       },
-      "hasPart": [{ "@id": "#sample-A001" }]
+      "hasPart": [{ "@id": "#A001" }]
     },
     {
-      "@id": "#sample-A001",
+      "@id": "#A001",
       "@type": "Dataset",
       "name": "Sample A001 Files",
       "description": "All genomics files for sample A001",

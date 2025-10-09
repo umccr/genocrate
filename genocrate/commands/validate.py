@@ -111,6 +111,33 @@ def is_md5_checksum_valid(manifest_file_path: str, data_directory: str, processe
 
     return not errors
 
+def is_ro_crate_valid(path: str) -> bool:
+    # Create an instance of `ValidationSettings` class to configure the validation
+    settings = services.ValidationSettings(
+        # Set the path to the RO-Crate root directory
+        rocrate_uri=path,
+        # Set the identifier of the RO-Crate profile to use for validation.
+        # If not set, the system will attempt to automatically determine the appropriate validation profile.
+        profile_identifier='genocrate-batch-submission',
+        # Set the requirement level for the validation
+        requirement_severity=models.Severity.REQUIRED,
+        profiles_path=os.path.join(os.path.dirname(__file__), "../profile/genocrate-batch-submission/rules"),
+
+    )
+    # Call the validation service with the settings
+    result = services.validate(settings)
+
+    # Check if the validation was successful
+    if not result.has_issues():
+        return True
+    else:
+        for issue in result.get_issues():
+            # Every issue object has a reference to the check that failed, the severity of the issue, and a message describing the issue.
+            click.echo(
+                f"Detected issue of severity {issue.severity.name} with check \"{issue.check.identifier}\": {issue.message}"
+            )
+        return False
+
 
 @cli.command(name="validate-batch")
 @click.argument(
@@ -175,31 +202,3 @@ def validate_batch(path, validation_type, parallel, skip_integrity_validation):
 
     click.echo('Validation successful!')
     sys.exit(0)
-
-
-def is_ro_crate_valid(path: str) -> bool:
-    # Create an instance of `ValidationSettings` class to configure the validation
-    settings = services.ValidationSettings(
-        # Set the path to the RO-Crate root directory
-        rocrate_uri=path,
-        # Set the identifier of the RO-Crate profile to use for validation.
-        # If not set, the system will attempt to automatically determine the appropriate validation profile.
-        profile_identifier='genocrate-batch-submission',
-        # Set the requirement level for the validation
-        requirement_severity=models.Severity.REQUIRED,
-        profiles_path=os.path.join(os.path.dirname(__file__), "../profile/genocrate-batch-submission/rules"),
-
-    )
-    # Call the validation service with the settings
-    result = services.validate(settings)
-
-    # Check if the validation was successful
-    if not result.has_issues():
-        return True
-    else:
-        for issue in result.get_issues():
-            # Every issue object has a reference to the check that failed, the severity of the issue, and a message describing the issue.
-            click.echo(
-                f"Detected issue of severity {issue.severity.name} with check \"{issue.check.identifier}\": {issue.message}"
-            )
-        return False

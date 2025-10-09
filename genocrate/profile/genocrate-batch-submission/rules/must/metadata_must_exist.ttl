@@ -46,4 +46,3 @@
         sh:message "Root dataset must have a 'license'." ;
     ] ;
 .
-
