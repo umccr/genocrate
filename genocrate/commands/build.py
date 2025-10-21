@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-
+import datetime
 import click
 
 from genocrate.crate.merger import process_crate
@@ -18,11 +18,11 @@ from genocrate.main import cli
     help="The output RO-Crate metadata path",
     default="./output/ro-crate-metadata.json"
 )
-@click.option("--name", help="Dataset name")
-@click.option("--description", help="Dataset description")
-@click.option("--date-published", help="Publication date (YYYY-MM-DD)")
+@click.option("--name", help="Dataset name", required=True)
+@click.option("--description", help="Dataset description", required=True)
+@click.option("--date-published", help="Publication date (YYYY-MM-DD)", default=datetime.date.today())
 @click.option("--publisher", help="Publisher ROR ID (e.g., https://ror.org/...)")
-@click.option("--license", help="License URL")
+@click.option("--license", help="License for the dataset", default="Confidential - Not for Public Release.")
 def build(
         path: str,
         output_path: str,
