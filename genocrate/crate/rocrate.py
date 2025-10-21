@@ -5,13 +5,52 @@ from typing import Optional, Any
 
 
 class ROCrate:
-    def __init__(self, context: Optional[str] = "https://w3id.org/ro/crate/1.2/context", graph: Optional[list] = None):
+    def __init__(
+            self,
+            context: Optional[str] = "https://w3id.org/ro/crate/1.2/context",
+            graph: Optional[list] = None,
+            name: Optional[str] = None,
+            description: Optional[str] = None,
+            date_published: Optional[str] = None,
+            publisher: Optional[str] = None,
+            license: Optional[str] = None,
+            output_path: Optional[str] = "./output/ro-crate-metadata.json"):
 
         if graph is None:
-            graph = []
+            graph = self._create_minimal_valid_graph()
 
         self.context = context
         self.graph = graph
+        self.output_path = output_path
+
+        root = self.find_entity_by_id('./')
+        if name:
+            root['name'] = name
+        if description:
+            root['description'] = description
+        if date_published:
+            root['datePublished'] = date_published
+        if publisher:
+            root['publisher'] = {"@id": publisher}
+        if license:
+            root['license'] = {"@id": license}
+
+    @staticmethod
+    def _create_minimal_valid_graph() -> list:
+        """Create minimal valid RO-Crate structure per specification."""
+        return [
+            {
+                "@id": "ro-crate-metadata.json",
+                "@type": "CreativeWork",
+                "conformsTo": {"@id": "https://w3id.org/ro/crate/1.2"},
+                "about": {"@id": "./"}
+            },
+            {
+                "@id": "./",
+                "@type": "Dataset",
+                "hasPart": []
+            }
+        ]
 
     @classmethod
     def from_ro_crate_path(cls, crate_path: str) -> "ROCrate":
@@ -112,6 +151,10 @@ class ROCrate:
         for entity in other_crate.graph:
             entity_id = entity.get('@id')
 
+            # sub-crate root dataset doesn't get merged
+            if entity_id == './':
+                continue
+
             # Find index by matching @id
             existing_index = next(
                 (i for i, e in enumerate(self.graph) if e.get('@id') == entity_id),
@@ -124,5 +167,18 @@ class ROCrate:
                 # Override: replace existing entity at found index
                 self.graph[existing_index] = copy.deepcopy(entity)
 
+            # Make sure that if the entity is a Dataset, it is linked to the root dataset
+            entity_type = entity.get('@type')
+            if entity_type == 'Dataset':
+                self.upsert_has_part_id_to_entity('./', entity_id)
 
         self.remove_orphan_files()
+
+    def to_file(self) -> None:
+        """Write RO-Crate metadata to a file."""
+        data = {
+            '@context': self.context,
+            '@graph': self.graph
+        }
+        with open(self.output_path, 'w') as f:
+            json.dump(data, f, indent=2)

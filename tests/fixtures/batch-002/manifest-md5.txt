@@ -1,0 +1,9 @@
+96b2792c8f8e13927b0320b06743de58  data/ro-crate-preview.html
+d41d8cd98f00b204e9800998ecf8427e  data/A002.vcf
+d41d8cd98f00b204e9800998ecf8427e  data/A002_R1.fastq
+d41d8cd98f00b204e9800998ecf8427e  data/A002.vcf.tbi
+d41d8cd98f00b204e9800998ecf8427e  data/A001_R1.fastq
+27d8896550e1c41aae35b32bc73aa472  data/ro-crate-metadata.json
+d41d8cd98f00b204e9800998ecf8427e  data/A002.bam.bai
+d41d8cd98f00b204e9800998ecf8427e  data/A001_R2.fastq
+d41d8cd98f00b204e9800998ecf8427e  data/A002.bam

@@ -1,0 +1,160 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.2/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": { "@id": "https://w3id.org/ro/crate/1.2" },
+      "about": { "@id": "./" }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "batch-003",
+      "description": "Genomics data for batch-003",
+      "datePublished": "2025-07-29",
+      "publisher": { "@id": "https://ror.org/01ej9dk98" },
+      "license": {
+        "@id": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "hasPart": [{ "@id": "#sample-A002" }, { "@id": "#sample-A003" }]
+    },
+    {
+      "@id": "#sample-A002",
+      "@type": "Dataset",
+      "name": "Sample A002 Files",
+      "description": "Updated files for sample A002 from previous batch",
+      "identifier": "A002",
+      "hasPart": [{ "@id": "#A002-fastq" }, { "@id": "#A002-bam" }]
+    },
+    {
+      "@id": "#sample-A003",
+      "@type": "Dataset",
+      "name": "Sample A003 Files",
+      "description": "All genomics files for sample A003",
+      "identifier": "A003",
+      "hasPart": [
+        { "@id": "#A003-fastq" },
+        { "@id": "#A003-bam" },
+        { "@id": "#A003-vcf" }
+      ]
+    },
+    {
+      "@id": "#A002-fastq",
+      "@type": "Collection",
+      "name": "FASTQ files for A002",
+      "description": "Sequencing reads in FASTQ format",
+      "identifier": "A002-fastq",
+      "hasPart": [{ "@id": "A002_R2.fastq" }]
+    },
+    {
+      "@id": "#A002-bam",
+      "@type": "Collection",
+      "name": "BAM files for A002",
+      "description": "Binary alignment files and indices",
+      "identifier": "A002-bam",
+      "hasPart": [{ "@id": "A002.bam" }, { "@id": "A002.bam.bai" }]
+    },
+    {
+      "@id": "#A003-fastq",
+      "@type": "Collection",
+      "name": "FASTQ files for A003",
+      "description": "Sequencing reads in FASTQ format",
+      "identifier": "A003-fastq",
+      "hasPart": [{ "@id": "A003_R1.fastq" }, { "@id": "A003_R2.fastq" }]
+    },
+    {
+      "@id": "#A003-bam",
+      "@type": "Collection",
+      "name": "BAM files for A003",
+      "description": "Binary alignment files and indices",
+      "identifier": "A003-bam",
+      "hasPart": [{ "@id": "A003.bam" }, { "@id": "A003.bam.bai" }]
+    },
+    {
+      "@id": "#A003-vcf",
+      "@type": "Collection",
+      "name": "VCF files for A003",
+      "description": "Variant call files and indices",
+      "identifier": "A003-vcf",
+      "hasPart": [{ "@id": "A003.vcf" }, { "@id": "A003.vcf.tbi" }]
+    },
+    {
+      "@id": "https://ror.org/01ej9dk98",
+      "@type": "Organization",
+      "name": "The University of Melbourne",
+      "description": "UMCCR part of the University of Melbourne",
+      "url": "https://umccr.org/"
+    },
+    {
+      "@id": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "@type": "CreativeWork",
+      "name": "CC BY-NC-ND 4.0",
+      "description": "Attribution-NonCommercial-NoDerivatives 4.0 International"
+    },
+    {
+      "@id": "A002_R2.fastq",
+      "@type": "File",
+      "name": "FASTQ R2 reads for sample A002",
+      "description": "Reverse reads from sequencing",
+      "identifier": "A002_R2.fastq",
+      "encodingFormat": "text/plain"
+    },
+    {
+      "@id": "A002.bam",
+      "@type": "File",
+      "name": "BAM alignment file for sample A002",
+      "description": "Binary Alignment/Map file containing aligned sequencing reads",
+      "identifier": "A002.bam"
+    },
+    {
+      "@id": "A002.bam.bai",
+      "@type": "File",
+      "name": "BAM index file for sample A002",
+      "description": "Binary index file for the corresponding BAM file to enable random access",
+      "identifier": "A002.bam.bai"
+    },
+    {
+      "@id": "A003_R1.fastq",
+      "@type": "File",
+      "name": "FASTQ R1 reads for sample A003",
+      "description": "Forward reads from sequencing",
+      "identifier": "A003_R1.fastq"
+    },
+    {
+      "@id": "A003_R2.fastq",
+      "@type": "File",
+      "name": "FASTQ R2 reads for sample A003",
+      "description": "Reverse reads from sequencing",
+      "identifier": "A003_R2.fastq"
+    },
+    {
+      "@id": "A003.bam",
+      "@type": "File",
+      "name": "BAM alignment file for sample A003",
+      "description": "Binary Alignment/Map file containing aligned sequencing reads",
+      "identifier": "A003.bam"
+    },
+    {
+      "@id": "A003.bam.bai",
+      "@type": "File",
+      "name": "BAM index file for sample A003",
+      "description": "Binary index file for the corresponding BAM file to enable random access",
+      "identifier": "A003.bam.bai"
+    },
+    {
+      "@id": "A003.vcf",
+      "@type": "File",
+      "name": "VCF variant file for sample A003",
+      "description": "Variant Call Format file containing genetic variants",
+      "identifier": "A003.vcf"
+    },
+    {
+      "@id": "A003.vcf.tbi",
+      "@type": "File",
+      "name": "VCF index file for sample A003",
+      "description": "Tabix index file for the corresponding VCF file to enable random access",
+      "identifier": "A003.vcf.tbi"
+    }
+  ]
+}

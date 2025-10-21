@@ -23,8 +23,8 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "@name": "batch-002",
-      "description": "Genomics data batch containing FASTQ, BAM alignment and VCF variant files for samples A001 and A002",
+      "name": "batch-003",
+      "description": "Genomics data for batch-003",
       "datePublished": "2025-07-29",
       "publisher": {
         "@id": "https://ror.org/01ej9dk98"
@@ -34,10 +34,10 @@
       },
       "hasPart": [
         {
-          "@id": "#sample-A001"
+          "@id": "#sample-A002"
         },
         {
-          "@id": "#sample-A002"
+          "@id": "#sample-A003"
         }
       ]
     },
@@ -55,20 +55,10 @@
       "description": "Attribution-NonCommercial-NoDerivatives 4.0 International"
     },
     {
-      "@id": "#sample-A001",
-      "@type": "Dataset",
-      "name": "Sample A001 Files",
-      "description": "All genomics files for sample A001",
-      "identifier": "A001",
-      "hasPart": {
-        "@id": "#A001-fastq"
-      }
-    },
-    {
       "@id": "#sample-A002",
       "@type": "Dataset",
       "name": "Sample A002 Files",
-      "description": "All genomics files for sample A002",
+      "description": "Updated files for sample A002 from previous batch",
       "identifier": "A002",
       "hasPart": [
         {
@@ -76,24 +66,24 @@
         },
         {
           "@id": "#A002-bam"
-        },
-        {
-          "@id": "#A002-vcf"
         }
       ]
     },
     {
-      "@id": "#A001-fastq",
-      "@type": "Collection",
-      "name": "FASTQ files for A001",
-      "description": "Sequencing reads in FASTQ format",
-      "identifier": "A001-fastq",
+      "@id": "#sample-A003",
+      "@type": "Dataset",
+      "name": "Sample A003 Files",
+      "description": "All genomics files for sample A003",
+      "identifier": "A003",
       "hasPart": [
         {
-          "@id": "A001_R1.fastq"
+          "@id": "#A003-fastq"
         },
         {
-          "@id": "A001_R2.fastq"
+          "@id": "#A003-bam"
+        },
+        {
+          "@id": "#A003-vcf"
         }
       ]
     },
@@ -104,7 +94,7 @@
       "description": "Sequencing reads in FASTQ format",
       "identifier": "A002-fastq",
       "hasPart": {
-        "@id": "A002_R1.fastq"
+        "@id": "A002_R2.fastq"
       }
     },
     {
@@ -123,42 +113,56 @@
       ]
     },
     {
-      "@id": "#A002-vcf",
+      "@id": "#A003-fastq",
       "@type": "Collection",
-      "name": "VCF files for A002",
-      "description": "Variant call files and indices",
-      "identifier": "A002-vcf",
+      "name": "FASTQ files for A003",
+      "description": "Sequencing reads in FASTQ format",
+      "identifier": "A003-fastq",
       "hasPart": [
         {
-          "@id": "A002.vcf"
+          "@id": "A003_R1.fastq"
         },
         {
-          "@id": "A002.vcf.tbi"
+          "@id": "A003_R2.fastq"
         }
       ]
     },
     {
-      "@id": "A001_R1.fastq",
-      "@type": "File",
-      "name": "FASTQ R1 reads for sample A001",
-      "description": "Forward reads from sequencing",
-      "identifier": "A001_R1.fastq",
-      "encodingFormat": "text/plain"
+      "@id": "#A003-bam",
+      "@type": "Collection",
+      "name": "BAM files for A003",
+      "description": "Binary alignment files and indices",
+      "identifier": "A003-bam",
+      "hasPart": [
+        {
+          "@id": "A003.bam"
+        },
+        {
+          "@id": "A003.bam.bai"
+        }
+      ]
     },
     {
-      "@id": "A001_R2.fastq",
+      "@id": "#A003-vcf",
+      "@type": "Collection",
+      "name": "VCF files for A003",
+      "description": "Variant call files and indices",
+      "identifier": "A003-vcf",
+      "hasPart": [
+        {
+          "@id": "A003.vcf"
+        },
+        {
+          "@id": "A003.vcf.tbi"
+        }
+      ]
+    },
+    {
+      "@id": "A002_R2.fastq",
       "@type": "File",
-      "name": "FASTQ R2 reads for sample A001",
+      "name": "FASTQ R2 reads for sample A002",
       "description": "Reverse reads from sequencing",
-      "identifier": "A001_R2.fastq",
-      "encodingFormat": "text/plain"
-    },
-    {
-      "@id": "A002_R1.fastq",
-      "@type": "File",
-      "name": "FASTQ R1 reads for sample A002",
-      "description": "Forward reads from sequencing",
-      "identifier": "A002_R1.fastq",
+      "identifier": "A002_R2.fastq",
       "encodingFormat": "text/plain"
     },
     {
@@ -166,32 +170,56 @@
       "@type": "File",
       "name": "BAM alignment file for sample A002",
       "description": "Binary Alignment/Map file containing aligned sequencing reads",
-      "identifier": "A002.bam",
-      "encodingFormat": "application/octet-stream"
+      "identifier": "A002.bam"
     },
     {
       "@id": "A002.bam.bai",
       "@type": "File",
       "name": "BAM index file for sample A002",
       "description": "Binary index file for the corresponding BAM file to enable random access",
-      "identifier": "A002.bam.bai",
-      "encodingFormat": "application/octet-stream"
+      "identifier": "A002.bam.bai"
     },
     {
-      "@id": "A002.vcf",
+      "@id": "A003_R1.fastq",
       "@type": "File",
-      "name": "VCF variant file for sample A002",
+      "name": "FASTQ R1 reads for sample A003",
+      "description": "Forward reads from sequencing",
+      "identifier": "A003_R1.fastq"
+    },
+    {
+      "@id": "A003_R2.fastq",
+      "@type": "File",
+      "name": "FASTQ R2 reads for sample A003",
+      "description": "Reverse reads from sequencing",
+      "identifier": "A003_R2.fastq"
+    },
+    {
+      "@id": "A003.bam",
+      "@type": "File",
+      "name": "BAM alignment file for sample A003",
+      "description": "Binary Alignment/Map file containing aligned sequencing reads",
+      "identifier": "A003.bam"
+    },
+    {
+      "@id": "A003.bam.bai",
+      "@type": "File",
+      "name": "BAM index file for sample A003",
+      "description": "Binary index file for the corresponding BAM file to enable random access",
+      "identifier": "A003.bam.bai"
+    },
+    {
+      "@id": "A003.vcf",
+      "@type": "File",
+      "name": "VCF variant file for sample A003",
       "description": "Variant Call Format file containing genetic variants",
-      "identifier": "A002.vcf",
-      "encodingFormat": "text/plain"
+      "identifier": "A003.vcf"
     },
     {
-      "@id": "A002.vcf.tbi",
+      "@id": "A003.vcf.tbi",
       "@type": "File",
-      "name": "VCF index file for sample A002",
+      "name": "VCF index file for sample A003",
       "description": "Tabix index file for the corresponding VCF file to enable random access",
-      "identifier": "A002.vcf.tbi",
-      "encodingFormat": "application/octet-stream"
+      "identifier": "A003.vcf.tbi"
     }
   ]
 }
@@ -220,17 +248,17 @@ table.table {
   <nav class="navbar">
 
     <ul class="nav navbar-nav" >
-        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;</span></a></li>
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;batch-003</span></a></li>
     </ul>
 
   </nav>
 <div class="container">
 <div class="jumbotron">
 <h4 class="citation"></h4>
-<h3 class="item_name"></h3>
+<h3 class="item_name">batch-003</h3>
 
 
-<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'></span> in JSON-LD format</a>
+<a href="ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>batch-003</span> in JSON-LD format</a>
 
 
 <div id="check"></div>
@@ -243,7 +271,7 @@ table.table {
 <div id="summary">
 <div class='all-meta'>
             <div>
-                <h3> ./</h3>
+                <h3> batch-003</h3>
                 
                 
                 
@@ -255,17 +283,17 @@ table.table {
             <th style="text-align:left;" class="prop">@id</th>
             <td style='text-align:left'><span>./</span></td>
             </tr><tr>
+            <th style="text-align:left;" class="prop">name</th>
+            <td style='text-align:left'><span>batch-003</span></td>
+            </tr><tr>
             <th style="text-align:left;" class="prop">@type</th>
             <td style='text-align:left'><span>Dataset</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">description</th>
-            <td style='text-align:left'><span>Genomics data batch containing FASTQ, BAM alignment and VCF variant files for samples A001 and A002</span></td>
+            <td style='text-align:left'><span>Genomics data for batch-003</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">datePublished</th>
             <td style='text-align:left'><span>2025-07-29</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">@name</th>
-            <td style='text-align:left'><span>batch-002</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">publisher</th>
             <td style='text-align:left'><a href="#https%3A//ror.org/01ej9dk98">The University of Melbourne</a></td>
@@ -275,9 +303,9 @@ table.table {
             </tr><tr>
             <th style="text-align:left;" class="prop">hasPart</th>
             <td style='text-align:left'><ul>
-                        <li><a href="#%23sample-A001">Sample A001 Files</a></li>
-                        
                         <li><a href="#%23sample-A002">Sample A002 Files</a></li>
+                        
+                        <li><a href="#%23sample-A003">Sample A003 Files</a></li>
                         </ul></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">about</th>
@@ -313,7 +341,7 @@ table.table {
             <td style='text-align:left'><a href="https://umccr.org/">https://umccr.org/</a></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">publisher</th>
-            <td style='text-align:left'><a href="#./">./</a></td>
+            <td style='text-align:left'><a href="#./">batch-003</a></td>
             </tr></tbody>
             </table>
         </div>
@@ -342,42 +370,7 @@ table.table {
             <td style='text-align:left'><span>Attribution-NonCommercial-NoDerivatives 4.0 International</span></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">license</th>
-            <td style='text-align:left'><a href="#./">./</a></td>
-            </tr></tbody>
-            </table>
-        </div>
-            </div>
-        <hr/><br/><br/>
-            <div>
-                <h3> Sample A001 Files</h3>
-                
-                
-                
-                
-        <div id="#sample-A001">
-            
-            <table class="table metadata table-striped" >
-                <tbody><tr>
-            <th style="text-align:left;" class="prop">@id</th>
-            <td style='text-align:left'><span>#sample-A001</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">name</th>
-            <td style='text-align:left'><span>Sample A001 Files</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">@type</th>
-            <td style='text-align:left'><span>Dataset</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">description</th>
-            <td style='text-align:left'><span>All genomics files for sample A001</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">identifier</th>
-            <td style='text-align:left'><span>A001</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">hasPart</th>
-            <td style='text-align:left'><a href="#%23A001-fastq">FASTQ files for A001</a></td>
-            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
-            <th style="text-align:left;" class="prop">hasPart</th>
-            <td style='text-align:left'><a href="#./">./</a></td>
+            <td style='text-align:left'><a href="#./">batch-003</a></td>
             </tr></tbody>
             </table>
         </div>
@@ -403,7 +396,7 @@ table.table {
             <td style='text-align:left'><span>Dataset</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">description</th>
-            <td style='text-align:left'><span>All genomics files for sample A002</span></td>
+            <td style='text-align:left'><span>Updated files for sample A002 from previous batch</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">identifier</th>
             <td style='text-align:left'><span>A002</span></td>
@@ -413,12 +406,51 @@ table.table {
                         <li><a href="#%23A002-fastq">FASTQ files for A002</a></li>
                         
                         <li><a href="#%23A002-bam">BAM files for A002</a></li>
-                        
-                        <li><a href="#%23A002-vcf">VCF files for A002</a></li>
                         </ul></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">hasPart</th>
-            <td style='text-align:left'><a href="#./">./</a></td>
+            <td style='text-align:left'><a href="#./">batch-003</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+            </div>
+        <hr/><br/><br/>
+            <div>
+                <h3> Sample A003 Files</h3>
+                
+                
+                
+                
+        <div id="#sample-A003">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#sample-A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name</th>
+            <td style='text-align:left'><span>Sample A003 Files</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description</th>
+            <td style='text-align:left'><span>All genomics files for sample A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier</th>
+            <td style='text-align:left'><span>A003</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart</th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#%23A003-fastq">FASTQ files for A003</a></li>
+                        
+                        <li><a href="#%23A003-bam">BAM files for A003</a></li>
+                        
+                        <li><a href="#%23A003-vcf">VCF files for A003</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart</th>
+            <td style='text-align:left'><a href="#./">batch-003</a></td>
             </tr></tbody>
             </table>
         </div>

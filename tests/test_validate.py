@@ -26,7 +26,7 @@ def test_validate_batch_valid_md5():
     Test that the 'validate-batch' command succeeds when the manifest is valid and all files are listed in the manifest.
     """
     runner = CliRunner()
-    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-002/data/good-manifest-md5.txt", "-t", "md5"])
+    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-004/data/good-manifest-md5.txt", "-t", "md5"])
     assert result.exit_code == 0
 
 def test_validate_batch_invalid_md5():
@@ -34,5 +34,5 @@ def test_validate_batch_invalid_md5():
     Test that the 'validate-batch' when the manifest failed (incorrect checksum or files not listed).
     """
     runner = CliRunner()
-    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-002/data/bad-manifest-md5.txt", "-t", "md5"])
+    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-004/data/bad-manifest-md5.txt", "-t", "md5"])
     assert result.exit_code == 1
