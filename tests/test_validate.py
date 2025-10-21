@@ -31,8 +31,9 @@ def test_validate_batch_valid_md5():
     with patch('genocrate.commands.validate.is_ro_crate_valid', return_value=True):
         result = runner.invoke(
             cli,
-            ["validate-batch", "./tests/fixtures/batch-002/good-manifest-md5.txt", "-t", "md5"]
+            ["validate-batch", "./tests/fixtures/batch-004/good-manifest-md5.txt", "-t", "md5"]
         )
+        print(result.output)
         assert result.exit_code == 0
 
 def test_validate_batch_invalid_md5():
@@ -44,7 +45,7 @@ def test_validate_batch_invalid_md5():
     with patch('genocrate.commands.validate.is_ro_crate_valid', return_value=True):
         result = runner.invoke(
             cli,
-            ["validate-batch", "./tests/fixtures/batch-002/bad-manifest-md5.txt", "-t", "md5"]
+            ["validate-batch", "./tests/fixtures/batch-004/bad-manifest-md5.txt", "-t", "md5"]
         )
         assert result.exit_code == 1
 

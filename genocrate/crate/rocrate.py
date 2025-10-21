@@ -1,5 +1,6 @@
 import json
 import copy
+import os
 
 from typing import Optional, Any
 
@@ -180,5 +181,6 @@ class ROCrate:
             '@context': self.context,
             '@graph': self.graph
         }
+        os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
         with open(self.output_path, 'w') as f:
             json.dump(data, f, indent=2)
