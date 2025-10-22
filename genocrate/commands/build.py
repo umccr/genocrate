@@ -22,7 +22,8 @@ from genocrate.main import cli
 @click.option("--description", help="Dataset description", required=True)
 @click.option("--date-published", help="Publication date (YYYY-MM-DD)", default=datetime.date.today())
 @click.option("--publisher", help="Publisher ROR ID (e.g., https://ror.org/...)")
-@click.option("--license", help="License for the dataset", default="Confidential - Not for Public Release.")
+@click.option("--license", help="License for the dataset (textual description of how the RO-Crate may be used)",
+              default="Confidential - Not for Public Release.")
 def build(
         path: str,
         output_path: str,
@@ -43,6 +44,7 @@ def build(
         description=description,
         date_published=date_published,
         publisher=publisher,
+        # TODO: Ability for referencing contextual entity license
         license=license
     )
 
