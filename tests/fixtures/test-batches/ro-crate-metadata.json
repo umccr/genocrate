@@ -19,16 +19,18 @@
           "@id": "#A001"
         },
         {
-          "@id": "#sample-A002"
+          "@id": "#A002"
         },
         {
-          "@id": "#sample-A003"
+          "@id": "#A003"
         }
       ],
       "name": "test-dataset",
       "description": "a dataset created for testing",
       "datePublished": "2025-10-22",
-      "license": "Confidential - Not for Public Release."
+      "license_": {
+        "@id": "Confidential - Not for Public Release."
+      }
     },
     {
       "@id": "#A001",
@@ -49,6 +51,20 @@
       ]
     },
     {
+      "@id": "./tests/fixtures/test-batches/batch-001/data/A001.bam",
+      "@type": "File",
+      "name": "BAM alignment file for sample A001",
+      "description": "Binary Alignment/Map file containing aligned sequencing reads",
+      "identifier": "A001.bam"
+    },
+    {
+      "@id": "./tests/fixtures/test-batches/batch-001/data/A001.bam.bai",
+      "@type": "File",
+      "name": "BAM index file for sample A001",
+      "description": "Binary index file for the corresponding BAM file to enable random access",
+      "identifier": "A001.bam.bai"
+    },
+    {
       "@id": "#A001-bam",
       "@type": "Collection",
       "name": "BAM files for A001",
@@ -56,15 +72,22 @@
       "identifier": "A001-bam",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-004/data/A001.bam"
+          "@id": "./tests/fixtures/test-batches/batch-001/data/A001.bam"
         },
         {
-          "@id": "./tests/fixtures/batch-004/data/A001.bam.bai"
+          "@id": "./tests/fixtures/test-batches/batch-001/data/A001.bam.bai"
         }
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-001/data/A001.vcf.tbi",
+      "@id": "./tests/fixtures/test-batches/batch-001/data/A001.vcf",
+      "@type": "File",
+      "name": "VCF variant file for sample A001",
+      "description": "Variant Call Format file containing genetic variants",
+      "identifier": "A001.vcf"
+    },
+    {
+      "@id": "./tests/fixtures/test-batches/batch-001/data/A001.vcf.tbi",
       "@type": "File",
       "name": "VCF index file for sample A001",
       "description": "Tabix index file for the corresponding VCF file to enable random access",
@@ -78,15 +101,15 @@
       "identifier": "A001-vcf",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-004/data/A001.vcf"
+          "@id": "./tests/fixtures/test-batches/batch-001/data/A001.vcf"
         },
         {
-          "@id": "./tests/fixtures/batch-001/data/A001.vcf.tbi"
+          "@id": "./tests/fixtures/test-batches/batch-001/data/A001.vcf.tbi"
         }
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-002/data/A001_R1.fastq",
+      "@id": "./tests/fixtures/test-batches/batch-002/data/A001_R1.fastq",
       "@type": "File",
       "name": "FASTQ R1 reads for sample A001",
       "description": "Forward reads from sequencing",
@@ -94,7 +117,7 @@
       "encodingFormat": "text/plain"
     },
     {
-      "@id": "./tests/fixtures/batch-002/data/A001_R2.fastq",
+      "@id": "./tests/fixtures/test-batches/batch-002/data/A001_R2.fastq",
       "@type": "File",
       "name": "FASTQ R2 reads for sample A001",
       "description": "Reverse reads from sequencing",
@@ -109,15 +132,15 @@
       "identifier": "A001-fastq",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-002/data/A001_R1.fastq"
+          "@id": "./tests/fixtures/test-batches/batch-002/data/A001_R1.fastq"
         },
         {
-          "@id": "./tests/fixtures/batch-002/data/A001_R2.fastq"
+          "@id": "./tests/fixtures/test-batches/batch-002/data/A001_R2.fastq"
         }
       ]
     },
     {
-      "@id": "#sample-A002",
+      "@id": "#A002",
       "@type": "Dataset",
       "name": "Sample A002 Files",
       "description": "All genomics files for sample A002",
@@ -135,7 +158,7 @@
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-002/data/A002_R1.fastq",
+      "@id": "./tests/fixtures/test-batches/batch-002/data/A002_R1.fastq",
       "@type": "File",
       "name": "FASTQ R1 reads for sample A002",
       "description": "Forward reads from sequencing",
@@ -150,10 +173,10 @@
       "identifier": "A002-fastq",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-002/data/A002_R1.fastq"
+          "@id": "./tests/fixtures/test-batches/batch-002/data/A002_R1.fastq"
         },
         {
-          "@id": "./tests/fixtures/batch-003/data/A002_R2.fastq"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A002_R2.fastq"
         }
       ]
     },
@@ -165,10 +188,10 @@
       "identifier": "A002-bam",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-003/data/A002.bam"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A002.bam"
         },
         {
-          "@id": "./tests/fixtures/batch-003/data/A002.bam.bai"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A002.bam.bai"
         }
       ]
     },
@@ -192,7 +215,7 @@
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A002_R2.fastq",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A002_R2.fastq",
       "@type": "File",
       "name": "FASTQ R2 reads for sample A002",
       "description": "Reverse reads from sequencing",
@@ -200,21 +223,21 @@
       "encodingFormat": "text/plain"
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A002.bam",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A002.bam",
       "@type": "File",
       "name": "BAM alignment file for sample A002",
       "description": "Binary Alignment/Map file containing aligned sequencing reads",
       "identifier": "A002.bam"
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A002.bam.bai",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A002.bam.bai",
       "@type": "File",
       "name": "BAM index file for sample A002",
       "description": "Binary index file for the corresponding BAM file to enable random access",
       "identifier": "A002.bam.bai"
     },
     {
-      "@id": "#sample-A003",
+      "@id": "#A003",
       "@type": "Dataset",
       "name": "Sample A003 Files",
       "description": "All genomics files for sample A003",
@@ -232,14 +255,14 @@
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A003_R1.fastq",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A003_R1.fastq",
       "@type": "File",
       "name": "FASTQ R1 reads for sample A003",
       "description": "Forward reads from sequencing",
       "identifier": "A003_R1.fastq"
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A003_R2.fastq",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A003_R2.fastq",
       "@type": "File",
       "name": "FASTQ R2 reads for sample A003",
       "description": "Reverse reads from sequencing",
@@ -253,22 +276,22 @@
       "identifier": "A003-fastq",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-003/data/A003_R1.fastq"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A003_R1.fastq"
         },
         {
-          "@id": "./tests/fixtures/batch-003/data/A003_R2.fastq"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A003_R2.fastq"
         }
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A003.bam",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A003.bam",
       "@type": "File",
       "name": "BAM alignment file for sample A003",
       "description": "Binary Alignment/Map file containing aligned sequencing reads",
       "identifier": "A003.bam"
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A003.bam.bai",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A003.bam.bai",
       "@type": "File",
       "name": "BAM index file for sample A003",
       "description": "Binary index file for the corresponding BAM file to enable random access",
@@ -282,22 +305,22 @@
       "identifier": "A003-bam",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-003/data/A003.bam"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A003.bam"
         },
         {
-          "@id": "./tests/fixtures/batch-003/data/A003.bam.bai"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A003.bam.bai"
         }
       ]
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A003.vcf",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A003.vcf",
       "@type": "File",
       "name": "VCF variant file for sample A003",
       "description": "Variant Call Format file containing genetic variants",
       "identifier": "A003.vcf"
     },
     {
-      "@id": "./tests/fixtures/batch-003/data/A003.vcf.tbi",
+      "@id": "./tests/fixtures/test-batches/batch-003/data/A003.vcf.tbi",
       "@type": "File",
       "name": "VCF index file for sample A003",
       "description": "Tabix index file for the corresponding VCF file to enable random access",
@@ -311,33 +334,12 @@
       "identifier": "A003-vcf",
       "hasPart": [
         {
-          "@id": "./tests/fixtures/batch-003/data/A003.vcf"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A003.vcf"
         },
         {
-          "@id": "./tests/fixtures/batch-003/data/A003.vcf.tbi"
+          "@id": "./tests/fixtures/test-batches/batch-003/data/A003.vcf.tbi"
         }
       ]
-    },
-    {
-      "@id": "./tests/fixtures/batch-004/data/A001.bam",
-      "@type": "File",
-      "name": "BAM alignment file for sample A001",
-      "description": "Binary Alignment/Map file containing aligned sequencing reads",
-      "identifier": "A001.bam"
-    },
-    {
-      "@id": "./tests/fixtures/batch-004/data/A001.bam.bai",
-      "@type": "File",
-      "name": "BAM index file for sample A001",
-      "description": "Binary index file for the corresponding BAM file to enable random access",
-      "identifier": "A001.bam.bai"
-    },
-    {
-      "@id": "./tests/fixtures/batch-004/data/A001.vcf",
-      "@type": "File",
-      "name": "VCF variant file for sample A001",
-      "description": "Variant Call Format file containing genetic variants",
-      "identifier": "A001.vcf"
     }
   ]
 }

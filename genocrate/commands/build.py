@@ -1,4 +1,3 @@
-import json
 import os
 import sys
 import datetime
@@ -14,9 +13,9 @@ from genocrate.main import cli
     "path", type=click.Path(exists=True, dir_okay=True, file_okay=False)
 )
 @click.option(
-    "--output-path",
+    "--output-path", "-o",
     help="The output RO-Crate metadata path",
-    default="./output/ro-crate-metadata.json"
+    default="./ro-crate-metadata.json"
 )
 @click.option("--name", help="Dataset name", required=True)
 @click.option("--description", help="Dataset description", required=True)
@@ -45,11 +44,12 @@ def build(
         date_published=date_published,
         publisher=publisher,
         # TODO: Ability for referencing contextual entity license
-        license=license
+        license_=license
     )
 
     # Find all RO-Crate metadata files
     crate_paths = find_crate_metadata_files(path)
+
     # Sort by timestamp order
     sorted_crate_paths = sorted(crate_paths)
     for crate_path in sorted_crate_paths:

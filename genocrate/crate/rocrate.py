@@ -14,15 +14,16 @@ class ROCrate:
             description: Optional[str] = None,
             date_published: Optional[str] = None,
             publisher: Optional[str] = None,
-            license: Optional[str] = None,
-            output_path: Optional[str] = "./output/ro-crate-metadata.json"):
+            license_: Optional[str] = None,
+            output_path: Optional[str] = None):
 
         if graph is None:
             graph = self._create_minimal_valid_graph()
+        if output_path:
+            self.output_path = output_path
 
         self.context = context
         self.graph = graph
-        self.output_path = output_path
 
         root = self.find_entity_by_id('./')
         if name:
@@ -33,8 +34,8 @@ class ROCrate:
             root['datePublished'] = date_published
         if publisher:
             root['publisher'] = {"@id": publisher}
-        if license:
-            root['license'] = {"@id": license}
+        if license_:
+            root['license_'] = ({"@id": license_})
 
     @staticmethod
     def _create_minimal_valid_graph() -> list:
@@ -177,6 +178,9 @@ class ROCrate:
 
     def to_file(self) -> None:
         """Write RO-Crate metadata to a file."""
+        if self.output_path is None:
+            raise ValueError("Output path is not set for ROCrate")
+
         data = {
             '@context': self.context,
             '@graph': self.graph

@@ -1,7 +1,5 @@
 from click.testing import CliRunner
-from genocrate.main import cli  # Import the CLI group
-import os
-from genocrate.commands.validate import validate_batch
+from genocrate.main import cli
 from unittest.mock import patch
 
 def test_validate_batch_valid_bagit():
@@ -9,7 +7,7 @@ def test_validate_batch_valid_bagit():
     Test that the 'validate-batch' command succeeds for a batch conforming to the BagIt specification.
     """
     runner = CliRunner()
-    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-001", "-t", "bagit"])
+    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/test-batches/batch-001", "-t", "bagit"])
     assert result.exit_code == 0
 
 
@@ -18,7 +16,7 @@ def test_validate_batch_invalid_bagit():
     Test that the 'validate-batch' command fails for a batch NOT conforming to the BagIt specification.
     """
     runner = CliRunner()
-    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-002", "-t", "bagit"])
+    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-004", "-t", "bagit"])
     assert result.exit_code == 1
 
 def test_validate_batch_valid_md5():
@@ -54,5 +52,5 @@ def test_validate_invalid_ro_crate():
     Test that the 'validate-batch' command fails when the RO-Crate metadata does not list all files.
     """
     runner = CliRunner()
-    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-002", "--skip-integrity-validation"])
+    result = runner.invoke(cli, ["validate-batch", "./tests/fixtures/batch-004", "--skip-integrity-validation"])
     assert result.exit_code == 1

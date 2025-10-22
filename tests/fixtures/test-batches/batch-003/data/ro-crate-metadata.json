@@ -17,10 +17,10 @@
       "license": {
         "@id": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
       },
-      "hasPart": [{ "@id": "#sample-A002" }, { "@id": "#sample-A003" }]
+      "hasPart": [{ "@id": "#A002" }, { "@id": "#A003" }]
     },
     {
-      "@id": "#sample-A002",
+      "@id": "#A002",
       "@type": "Dataset",
       "name": "Sample A002 Files",
       "description": "Updated files for sample A002 from previous batch",
@@ -28,7 +28,7 @@
       "hasPart": [{ "@id": "#A002-fastq" }, { "@id": "#A002-bam" }]
     },
     {
-      "@id": "#sample-A003",
+      "@id": "#A003",
       "@type": "Dataset",
       "name": "Sample A003 Files",
       "description": "All genomics files for sample A003",

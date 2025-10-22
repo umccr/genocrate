@@ -28,7 +28,7 @@
       "hasPart": [{ "@id": "#A001-fastq" }]
     },
     {
-      "@id": "#sample-A002",
+      "@id": "#A002",
       "@type": "Dataset",
       "name": "Sample A002 Files",
       "description": "All genomics files for sample A002",
