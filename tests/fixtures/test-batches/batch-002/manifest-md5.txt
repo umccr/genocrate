@@ -1,0 +1,8 @@
+d41d8cd98f00b204e9800998ecf8427e  data/A002.vcf
+d41d8cd98f00b204e9800998ecf8427e  data/A002_R1.fastq
+d41d8cd98f00b204e9800998ecf8427e  data/A002.vcf.tbi
+d41d8cd98f00b204e9800998ecf8427e  data/A001_R1.fastq
+c7245037e44f851038a58bf8f2a5913c  data/ro-crate-metadata.json
+d41d8cd98f00b204e9800998ecf8427e  data/A002.bam.bai
+d41d8cd98f00b204e9800998ecf8427e  data/A001_R2.fastq
+d41d8cd98f00b204e9800998ecf8427e  data/A002.bam

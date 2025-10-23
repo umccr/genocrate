@@ -1,0 +1,6 @@
+Source-Organization: The University
+Organization-Address: Melbourne, Victoria, 3000, Australia
+Contact-Name: UMCCR Data Management Team
+Contact-Email: data@umccr.org
+Bagging-Date: 2025-08-13
+External-Identifier: umccr_guardian_batch-003

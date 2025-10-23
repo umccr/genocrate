@@ -1,4 +1,3 @@
-940557b0528f6409221ae2d769898334  data/ro-crate-preview.html
 d6d0c756fb8abfb33e652a20e85b70bc  data/A001.vcf.tbi
 d6d0c756fb8abfb33e652a20e85b70bc  data/A001.vcf
 d6d0c756fb8abfb33e652a20e85b70bc  data/A001.bam.bai
