@@ -5,10 +5,9 @@ from unittest.mock import patch
 import json
 
 
-def test_validate_batch_valid_bagit():
+def test_build():
     """
-    Test that the 'validate-batch' command succeeds for a batch conforming to the BagIt specification.
-    Ensures all @id values are unique and file linking is correct.
+    Validates that the 'build' command generates a correct RO-Crate
     """
     runner = CliRunner()
     output_path = "./output/ro-crate-metadata.json"
