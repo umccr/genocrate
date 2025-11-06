@@ -157,7 +157,10 @@ def is_ro_crate_valid(path: str) -> bool:
 )
 @click.option(
     '--skip-integrity-validation',
-    is_flag=False)
+    is_flag=True,
+    default=False,
+    help="Skip integrity validation and only validate RO-Crate metadata"
+)
 def validate_batch(path, validation_type, parallel, skip_integrity_validation):
     """
     Validate a batch of files or bags for BagIt or MD5 compliance.
