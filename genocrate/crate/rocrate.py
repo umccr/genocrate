@@ -35,7 +35,7 @@ class ROCrate:
         if publisher:
             root['publisher'] = {"@id": publisher}
         if license_:
-            root['license_'] = ({"@id": license_})
+            root['license'] = license_
 
     @staticmethod
     def _create_minimal_valid_graph() -> list:
