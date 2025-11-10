@@ -17,8 +17,8 @@ class AllFilesMustBeListed(PyFunctionCheck):
     def check_all_files_listed(self, context: ValidationContext) -> bool:
         """Checks that every physical file is declared as a File entity in metadata, and every File entity exists in the directory."""
 
-
-        ro_crate_metadata_files = ["ro-crate-metadata.json", "ro-crate-preview.html"]
+        # Also ignore manifest.txt file
+        ro_crate_metadata_files = ["ro-crate-metadata.json", "ro-crate-preview.html", "manifest.txt"]
         directory_files = [os.path.basename(i) for i in context.ro_crate.list_files()]
         crate_files = [f.id for f in context.ro_crate.metadata.get_entities_by_type(['File'])]
 
