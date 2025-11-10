@@ -8,7 +8,7 @@ license = { "text" = "Apache-2.0" }
 requires-python = ">=3.8"
 classifiers = []
 dependencies = [
-    "click", "bagit", "roc-validator"
+    "click", "bagit", "roc-validator", "boto3"
 ]
 
 [build-system]

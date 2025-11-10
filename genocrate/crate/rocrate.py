@@ -4,6 +4,8 @@ import os
 
 from typing import Optional, Any
 
+from genocrate.crate.aws import get_s3_object_as_string, upload_string_to_s3
+
 
 class ROCrate:
     def __init__(
@@ -57,8 +59,11 @@ class ROCrate:
     @classmethod
     def from_ro_crate_path(cls, crate_path: str) -> "ROCrate":
         """Read and validate RO-Crate metadata file."""
-        with open(crate_path, 'r') as f:
-            data = json.load(f)
+        if crate_path.startswith('s3://'):
+            data = json.loads(get_s3_object_as_string(crate_path))
+        else:
+            with open(crate_path, 'r') as f:
+                data = json.load(f)
 
         if '@context' not in data:
             raise ValueError(f"Invalid RO-Crate at {crate_path}: Missing '@context' key")
@@ -185,6 +190,10 @@ class ROCrate:
             '@context': self.context,
             '@graph': self.graph
         }
-        os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
-        with open(self.output_path, 'w') as f:
-            json.dump(data, f, indent=2)
+
+        if self.output_path.startswith('s3://'):
+            upload_string_to_s3(self.output_path, json.dumps(data))
+        else:
+            os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
+            with open(self.output_path, 'w') as f:
+                json.dump(data, f, indent=2)

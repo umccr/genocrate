@@ -17,19 +17,19 @@ class DiffNode(TypedDict, total=True):
 
 @cli.command(name="diff")
 @click.argument(
-    "root_crate", nargs=1, type=click.Path(exists=True, file_okay=True)
+    "root_crate", nargs=1, type=click.Path(exists=False, file_okay=True),
 )
 @click.argument(
-    "new_crate", nargs=1, type=click.Path(exists=True, file_okay=True)
+    "new_crate", nargs=1, type=click.Path(exists=True, file_okay=True),
 )
 def diff(
-    root_crate: str,
-    new_crate: str,
+        root_crate: str,
+        new_crate: str,
 ):
     """
     Diff the RO-Crate metadata between the existing root crate and the new crate, showing changes if the new crate is merged.
 
-    ROOT-CRATE: Path to the root RO-Crate metadata file.
+    ROOT-CRATE: Path to the root RO-Crate metadata file (local path or S3 URI, e.g., s3://bucket/ro-crate-metadata.json). Requires AWS credentials for S3.
     NEW-CRATE: Path to the new RO-Crate metadata file.
     """
     original_crate = ROCrate.from_ro_crate_path(root_crate)
