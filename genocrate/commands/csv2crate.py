@@ -18,19 +18,19 @@ from genocrate.main import cli
     '--filename-column',
     type=str,
     default="filename",
-    help="The csv column header for the filename within the manifest"
+    help="The csv column header for the filename within the manifest (default: 'filename')"
 )
 @click.option(
     '--identifier-column',
     type=str,
     default="identifier",
-    help="The csv column header for the identifier within the manifest"
+    help="The csv column header for the identifier within the manifest (default: 'identifier')"
 )
 @click.option(
     '--checksum-column',
     type=str,
     default="checksum",
-    help="The checksum column header for the filename within the manifest"
+    help="The checksum column header for the filename within the manifest (default: 'checksum')"
 )
 @click.option(
     '--skip-crate-validation',
@@ -54,7 +54,9 @@ def csv2crate(
 ):
     """
     Convert a CSV manifest file to an RO-Crate.
-    The manifest should have columns for filename, identifier, and checksum.
+
+    The manifest must contain columns: filename, identifier, md5 checksum
+
     """
 
     # Get directory and name for output
