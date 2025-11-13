@@ -10,7 +10,7 @@ from genocrate.crate.validate_utils import is_ro_crate_valid, compute_hashes
 from genocrate.main import cli
 
 
-@cli.command(name="csv2crate")
+@cli.command(name="csv2genocrate")
 @click.argument(
     "csv_path", nargs=1, type=click.Path(exists=True, file_okay=True)
 )
@@ -44,7 +44,7 @@ from genocrate.main import cli
     default=False,
     help="Skip integrity validation"
 )
-def csv2crate(
+def csv2genocrate(
         csv_path: str,
         filename_column: str,
         identifier_column: str,
@@ -147,7 +147,8 @@ def csv2crate(
             sys.exit(1)
 
     if not skip_integrity_validation:
-        file_absolute_paths = [os.path.join(dirname, fn) for fn in filename_to_checksum.keys()]
+        file_absolute_paths = [os.path.join(
+            dirname, fn) for fn in filename_to_checksum.keys()]
         hash_results = compute_hashes(file_absolute_paths, processes=1)
         errors = []
         for filepath, calculated_md5 in hash_results:
@@ -155,7 +156,8 @@ def csv2crate(
 
             expected_md5 = filename_to_checksum[fn]
             if calculated_md5 != expected_md5:
-                errors.append(f"MD5 mismatch for {fn}: expected {expected_md5}, calculated {calculated_md5}")
+                errors.append(
+                    f"MD5 mismatch for {fn}: expected {expected_md5}, calculated {calculated_md5}")
 
         if errors:
             click.echo("Checksum validation errors:")

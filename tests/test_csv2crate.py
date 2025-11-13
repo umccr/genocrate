@@ -3,19 +3,19 @@ from genocrate.main import cli
 from genocrate.crate.rocrate import ROCrate
 
 
-def test_csv2crate():
+def test_csv2genocrate():
     """
-    Test for csv2crate command success
+    Test for csv2genocrate command success
     """
     test_dir = "./tests/fixtures/batch-005/data/"
 
     runner = CliRunner()
-    result = runner.invoke(cli, ["csv2crate", f"{test_dir}manifest.txt"])
+    result = runner.invoke(cli, ["csv2genocrate", f"{test_dir}manifest.txt"])
     assert result.exit_code == 0
 
-
     # read the output crate
-    output_crate = ROCrate.from_ro_crate_path(f"{test_dir}ro-crate-metadata.json")
+    output_crate = ROCrate.from_ro_crate_path(
+        f"{test_dir}ro-crate-metadata.json")
 
     entities = {e['@id']: e for e in output_crate.graph}
 
