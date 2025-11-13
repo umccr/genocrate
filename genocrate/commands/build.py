@@ -14,7 +14,7 @@ from genocrate.main import cli
 )
 @click.option(
     "--output-path", "-o",
-    help="The output RO-Crate metadata path",
+    help="Path to the output RO-Crate metadata file (local path or S3 URI, e.g., s3://bucket/ro-crate-metadata.json). Requires AWS credentials for S3.",
     default="./ro-crate-metadata.json"
 )
 @click.option("--name", help="Dataset name", required=True)
