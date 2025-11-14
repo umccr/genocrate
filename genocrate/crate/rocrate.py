@@ -5,6 +5,7 @@ import os
 from typing import Optional, Any
 
 from genocrate.crate.aws import get_s3_object_as_string, upload_string_to_s3
+from genocrate.crate.html_builder import convert_jsoncrate_to_html
 
 
 class ROCrate:
@@ -197,3 +198,58 @@ class ROCrate:
             os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
             with open(self.output_path, 'w') as f:
                 json.dump(data, f, indent=2)
+
+    def generate_html_preview(self) -> None:
+        """Generate HTML preview for the RO-Crate."""
+        root = self.find_entity_by_id("./")
+
+        license_value = root.get('license', None)
+        if isinstance(license_value, dict):
+            license = license_value.get('@id', 'N/A')
+        else:
+            license = license_value
+
+            # Prepare template data
+        json_crate = {
+            'name': root.get('name', 'Untitled Dataset'),
+            'description': root.get('description', 'No description'),
+            'date_published': root.get('datePublished', 'N/A'),
+            'license': license_value,
+            'datasets': [],
+        }
+
+        # Process each dataset
+        for dataset in self.find_non_root_dataset_entity():
+            ds_data = {
+                'name': dataset.get('name', dataset['@id']),
+                'description': dataset.get('description', ''),
+                'collections': []
+            }
+
+            # Process collections
+            for coll_ref in dataset.get('hasPart', []):
+                collection = self.find_entity_by_id(coll_ref['@id'])
+                if collection.get('@type') == 'Collection':
+                    coll_data = {
+                        'name': collection.get('name', coll_ref['@id']),
+                        'description': collection.get('description', ''),
+                        'files': []
+                    }
+
+                    # Process files
+                    for file_ref in collection.get('hasPart', []):
+                        file_obj = self.find_entity_by_id(file_ref['@id'])
+                        if file_obj.get('@type') == 'File':
+                            coll_data['files'].append({
+                                'name': file_obj.get('name', file_ref['@id']),
+                                'path': file_obj['@id'],
+                                'description': file_obj.get('description', '')
+                            })
+
+                    ds_data['collections'].append(coll_data)
+
+            json_crate['datasets'].append(ds_data)
+
+        # convert graph context to nested JSON
+        dir_path = os.path.dirname(self.output_path) if self.output_path else '.'
+        convert_jsoncrate_to_html(json_crate, dir_path)

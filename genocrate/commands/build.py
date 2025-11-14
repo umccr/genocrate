@@ -17,6 +17,12 @@ from genocrate.main import cli
     help="Path to the output RO-Crate metadata file (local path or S3 URI, e.g., s3://bucket/ro-crate-metadata.json). Requires AWS credentials for S3.",
     default="./ro-crate-metadata.json"
 )
+@click.option(
+    '--no-preview',
+    is_flag=True,
+    default=False,
+    help="Skip the generation of an HTML preview file. (ro-crate-preview.html)"
+)
 @click.option("--name", help="Dataset name", required=True)
 @click.option("--description", help="Dataset description", required=True)
 @click.option("--date-published", help="Publication date (YYYY-MM-DD)", default=datetime.date.today())
@@ -26,6 +32,7 @@ from genocrate.main import cli
 def build(
         path: str,
         output_path: str,
+        no_preview: bool,
         name: str,
         description: str,
         date_published: str,
@@ -57,6 +64,8 @@ def build(
         output_crate.merge_ro_crate(replacement_crate)
 
     output_crate.to_file()
+    if not no_preview:
+        output_crate.generate_html_preview()
 
     click.echo('Crate created/updated!')
     sys.exit(0)

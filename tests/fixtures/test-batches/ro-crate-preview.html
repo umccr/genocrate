@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test-dataset</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1, h2, h3 { color: #222; }
+        h1 { border-bottom: 3px solid #0066cc; padding-bottom: 10px; }
+        h2 { border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 30px; }
+        h3 { margin-top: 20px; }
+        .metadata {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .metadata p { margin: 8px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin: 8px 0; }
+        .indent { padding-left: 30px; margin-top: 15px; }
+        code {
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .collection-desc { color: #666; margin: 5px 0 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>test-dataset</h1>
+
+    <div class="metadata">
+        <p><strong>Description:</strong> a description</p>
+        <p><strong>Published:</strong> 2025-11-14</p>
+        <p><strong>License:</strong> Confidential - Not for Public Release.</p>
+    </div>
+
+    <h2>Datasets</h2>
+
+    
+    <h3>Sample A001 Files</h3>
+    <p>All genomics files for sample A001</p>
+
+    
+    <div class="indent">
+        <strong>BAM files for A001</strong>
+        
+        <p class="collection-desc">Binary alignment files and indices</p>
+        
+        <ul>
+        
+            <li>📄 BAM alignment file for sample A001 <code>./tests/fixtures/test-batches/batch-001/data/A001.bam</code>
+            <br><small style="color: #666;">Binary Alignment/Map file containing aligned sequencing reads</small>
+            </li>
+        
+            <li>📄 BAM index file for sample A001 <code>./tests/fixtures/test-batches/batch-001/data/A001.bam.bai</code>
+            <br><small style="color: #666;">Binary index file for the corresponding BAM file to enable random access</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    <div class="indent">
+        <strong>FASTQ files for A001</strong>
+        
+        <p class="collection-desc">Sequencing reads in FASTQ format</p>
+        
+        <ul>
+        
+            <li>📄 FASTQ R1 reads for sample A001 <code>./tests/fixtures/test-batches/batch-002/data/A001_R1.fastq</code>
+            <br><small style="color: #666;">Forward reads from sequencing</small>
+            </li>
+        
+            <li>📄 FASTQ R2 reads for sample A001 <code>./tests/fixtures/test-batches/batch-002/data/A001_R2.fastq</code>
+            <br><small style="color: #666;">Reverse reads from sequencing</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    <div class="indent">
+        <strong>VCF files for A001</strong>
+        
+        <p class="collection-desc">Variant call files and indices</p>
+        
+        <ul>
+        
+            <li>📄 VCF variant file for sample A001 <code>./tests/fixtures/test-batches/batch-001/data/A001.vcf</code>
+            <br><small style="color: #666;">Variant Call Format file containing genetic variants</small>
+            </li>
+        
+            <li>📄 VCF index file for sample A001 <code>./tests/fixtures/test-batches/batch-001/data/A001.vcf.tbi</code>
+            <br><small style="color: #666;">Tabix index file for the corresponding VCF file to enable random access</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    
+    <h3>Sample A002 Files</h3>
+    <p>All genomics files for sample A002</p>
+
+    
+    <div class="indent">
+        <strong>BAM files for A002</strong>
+        
+        <p class="collection-desc">Binary alignment files and indices</p>
+        
+        <ul>
+        
+            <li>📄 BAM alignment file for sample A002 <code>./tests/fixtures/test-batches/batch-003/data/A002.bam</code>
+            <br><small style="color: #666;">Binary Alignment/Map file containing aligned sequencing reads</small>
+            </li>
+        
+            <li>📄 BAM index file for sample A002 <code>./tests/fixtures/test-batches/batch-003/data/A002.bam.bai</code>
+            <br><small style="color: #666;">Binary index file for the corresponding BAM file to enable random access</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    <div class="indent">
+        <strong>FASTQ files for A002</strong>
+        
+        <p class="collection-desc">Sequencing reads in FASTQ format</p>
+        
+        <ul>
+        
+            <li>📄 FASTQ R1 reads for sample A002 <code>./tests/fixtures/test-batches/batch-002/data/A002_R1.fastq</code>
+            <br><small style="color: #666;">Forward reads from sequencing</small>
+            </li>
+        
+            <li>📄 FASTQ R2 reads for sample A002 <code>./tests/fixtures/test-batches/batch-003/data/A002_R2.fastq</code>
+            <br><small style="color: #666;">Reverse reads from sequencing</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    <div class="indent">
+        <strong>VCF files for A002</strong>
+        
+        <p class="collection-desc">Variant call files and indices</p>
+        
+        <ul>
+        
+            <li>📄 VCF variant file for sample A002 <code>A002.vcf</code>
+            <br><small style="color: #666;">Variant Call Format file containing genetic variants</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    
+    <h3>Sample A003 Files</h3>
+    <p>All genomics files for sample A003</p>
+
+    
+    <div class="indent">
+        <strong>BAM files for A003</strong>
+        
+        <p class="collection-desc">Binary alignment files and indices</p>
+        
+        <ul>
+        
+            <li>📄 BAM alignment file for sample A003 <code>./tests/fixtures/test-batches/batch-003/data/A003.bam</code>
+            <br><small style="color: #666;">Binary Alignment/Map file containing aligned sequencing reads</small>
+            </li>
+        
+            <li>📄 BAM index file for sample A003 <code>./tests/fixtures/test-batches/batch-003/data/A003.bam.bai</code>
+            <br><small style="color: #666;">Binary index file for the corresponding BAM file to enable random access</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    <div class="indent">
+        <strong>FASTQ files for A003</strong>
+        
+        <p class="collection-desc">Sequencing reads in FASTQ format</p>
+        
+        <ul>
+        
+            <li>📄 FASTQ R1 reads for sample A003 <code>./tests/fixtures/test-batches/batch-003/data/A003_R1.fastq</code>
+            <br><small style="color: #666;">Forward reads from sequencing</small>
+            </li>
+        
+            <li>📄 FASTQ R2 reads for sample A003 <code>./tests/fixtures/test-batches/batch-003/data/A003_R2.fastq</code>
+            <br><small style="color: #666;">Reverse reads from sequencing</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    <div class="indent">
+        <strong>VCF files for A003</strong>
+        
+        <p class="collection-desc">Variant call files and indices</p>
+        
+        <ul>
+        
+            <li>📄 VCF variant file for sample A003 <code>./tests/fixtures/test-batches/batch-003/data/A003.vcf</code>
+            <br><small style="color: #666;">Variant Call Format file containing genetic variants</small>
+            </li>
+        
+            <li>📄 VCF index file for sample A003 <code>./tests/fixtures/test-batches/batch-003/data/A003.vcf.tbi</code>
+            <br><small style="color: #666;">Tabix index file for the corresponding VCF file to enable random access</small>
+            </li>
+        
+        </ul>
+    </div>
+    
+    
+
+    <script type="application/ld+json">
+
+    </script>
+</body>
+</html>
