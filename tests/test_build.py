@@ -1,8 +1,7 @@
 from click.testing import CliRunner
 from genocrate.main import cli
 from genocrate.crate.rocrate import ROCrate
-from unittest.mock import patch
-import json
+import os
 
 
 def test_build():
@@ -63,3 +62,9 @@ def test_build():
     assert removed_bam is None, "Old A002.bam file from batch-002 should have been removed"
     removed_bam_bai = ro_crate.find_entity_by_id(f"{batch_dir}batch-002/data/A002.bam.bai")
     assert removed_bam_bai is None, "Old A002.bam.bai file from batch-002 should have been removed"
+
+    # clean up output file
+    if os.path.exists(output_path):
+        os.remove(output_path)
+        output_dir = os.path.dirname(output_path)
+        os.rmdir(output_dir)

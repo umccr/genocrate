@@ -7,5 +7,5 @@ def test_version():
     with runner.isolated_filesystem():
         result = runner.invoke(cli, ["--version"])
         assert result.exit_code == 0
-        assert result.output.startswith("cli, version ")
+        assert result.output.startswith("genocrate, version ")
 
