@@ -24,6 +24,10 @@ You can also use:
 python -m genocrate --help
 ```
 
+## CLI Documentation
+
+Detailed command-line documentation is available [in the CLI docs](./docs/cli.md).
+
 ## Development
 
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
@@ -43,4 +47,10 @@ To run the tests:
 
 ```bash
 python -m pytest
+```
+
+To update the CLI docs:
+
+```bash
+python ./scripts/generate_cli_docs.py
 ```
