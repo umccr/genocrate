@@ -10,6 +10,7 @@ def test_build():
     """
     runner = CliRunner()
     output_path = "./output/ro-crate-metadata.json"
+    output_preview_path = "./output/ro-crate-preview.html"
     batch_dir = "./tests/fixtures/test-batches/"
 
     result = runner.invoke(
@@ -64,7 +65,10 @@ def test_build():
     assert removed_bam_bai is None, "Old A002.bam.bai file from batch-002 should have been removed"
 
     # clean up output file
-    if os.path.exists(output_path):
-        os.remove(output_path)
-        output_dir = os.path.dirname(output_path)
+    output_dir = os.path.dirname(output_path)
+    if os.path.isdir(output_dir):
+        if os.path.exists(output_path):
+            os.remove(output_path)
+        if os.path.exists(output_preview_path):
+            os.remove(output_preview_path)
         os.rmdir(output_dir)
