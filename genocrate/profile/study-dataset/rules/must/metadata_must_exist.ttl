@@ -1,0 +1,34 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+<#RootDatasetMetadataShape>
+    a sh:NodeShape ;
+    sh:name "Root Dataset Metadata" ;
+    sh:description "Root dataset MUST have required metadata fields." ;
+    sh:targetNode <./> ;
+    sh:severity sh:Violation ;
+    sh:property [
+        sh:path schema:name ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Root dataset must have a 'name'." ;
+    ] ;
+    sh:property [
+        sh:path schema:description ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Root dataset must have a 'description'." ;
+    ] ;
+    sh:property [
+        sh:path schema:datePublished ;
+        sh:minCount 1 ;
+        sh:message "Root dataset must have a 'datePublished'." ;
+    ] ;
+    sh:property [
+        sh:path schema:license ;
+        sh:minCount 1 ;
+        sh:message "Root dataset must have a 'license'." ;
+    ] ;
+.

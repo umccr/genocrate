@@ -120,10 +120,10 @@ def is_ro_crate_valid(path: str) -> bool:
         rocrate_uri=path,
         # Set the identifier of the RO-Crate profile to use for validation.
         # If not set, the system will attempt to automatically determine the appropriate validation profile.
-        profile_identifier='genocrate-batch-submission',
+        profile_identifier='batch-submission',
         # Set the requirement level for the validation
         requirement_severity=models.Severity.REQUIRED,
-        profiles_path=os.path.join(os.path.dirname(__file__), "../profile/genocrate-batch-submission/rules"),
+        profiles_path=os.path.join(os.path.dirname(__file__), "../profile/batch-submission/rules"),
 
     )
     # Call the validation service with the settings

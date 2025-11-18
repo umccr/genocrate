@@ -5,7 +5,7 @@
 
 
 
-<https://github.com/umccr/genocrate/tree/main/genocrate/profile/genocrate-batch-submission>
+<https://github.com/umccr/genocrate/tree/main/genocrate/profile/batch-submission>
     a prof:Profile ;
 
     # the Profile's label
@@ -45,5 +45,5 @@
     ] ;
 
     # a short code to refer to the Profile with when a URI can't be used
-    prof:hasToken "genocrate-batch-submission" ;
+    prof:hasToken "batch-submission" ;
 .

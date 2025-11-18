@@ -1,0 +1,21 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+
+
+
+<#RootDatasetStructureShape>
+    a sh:NodeShape ;
+    sh:name "Root Dataset Structure Constraint" ;
+    sh:description "The root dataset MUST reference at least one sample Dataset via hasPart." ;
+    sh:targetNode <./> ;
+    sh:severity sh:Violation ;
+    sh:property [
+        sh:path schema:hasPart ;
+        sh:minCount 1 ;
+        sh:message "Root dataset must have at least one child dataset in 'hasPart'." ;
+        sh:node [
+            sh:class schema:Dataset ;
+            sh:message "Each hasPart reference from root must point to a Dataset (sample)." ;
+        ] ;
+    ] ;
+.

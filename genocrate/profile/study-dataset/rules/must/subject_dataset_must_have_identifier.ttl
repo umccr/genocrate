@@ -1,0 +1,33 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+
+
+<#SubjectDatasetIdentifierShape>
+    a sh:NodeShape ;
+    sh:name "Subject Dataset Identifier Constraint" ;
+    sh:description "Subject datasets (referenced by root via hasPart) MUST have an identifier property." ;
+    sh:targetClass schema:Dataset ;
+    sh:severity sh:Violation ;
+    sh:sparql [
+        sh:message "Subject dataset must have an 'identifier' property." ;
+        sh:select """
+            PREFIX schema: <http://schema.org/>
+
+            SELECT $this
+            WHERE {
+                $this a schema:Dataset .
+
+                # Ensure this is a child dataset (has a parent via hasPart)
+                ?parent schema:hasPart $this .
+
+                # Exclude root dataset
+                FILTER ($this != <./>)
+
+                # Check if identifier is missing
+                FILTER NOT EXISTS {
+                    $this schema:identifier ?id .
+                }
+            }
+        """ ;
+    ] ;
+.

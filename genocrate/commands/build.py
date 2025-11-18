@@ -40,7 +40,7 @@ def build(
         license: str
 ):
     """
-    Build and validate a batch of RO-Crate files.
+    Build a batch of RO-Crate files.
 
     PATH: Directory containing one or more ro-crate-metadata.json files.
     """

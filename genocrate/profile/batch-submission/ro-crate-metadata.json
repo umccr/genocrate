@@ -18,13 +18,14 @@
     },
     {
       "@id": "./",
-      "description": "GenoCrate Study Dataset Profile: summarizes genomic datasets across multiple batch submissions, each conforming to the 'genomic-batch-submission' profile. This profile defines hierarchical structure, constraints, and documentation for study-level RO-Crates.",
+      "description": "GenoCrate Batch Genomic Profile: a specialization of RO-Crate for packaging genomic data submissions. All files are grouped by artifact type, and artifact groups are linked to a single participant identifier, ensuring a clear, consistent structure for each data batch.",
       "@type": "Dataset",
       "datePublished": "2025-09-22",
-      "name": "Genorate Study Dataset Profile",
+      "name": "Genocrate Batch Profile",
       "version": "0.0.1",
       "hasPart": [
         { "@id": "#root-dataset-rule" },
+        { "@id": "#use-bag-it" },
         { "@id": "#hierarchy-guide" },
         { "@id": "example/" }
       ],
@@ -47,7 +48,7 @@
       "@type": "Constraint",
       "name": "Root Dataset Requirement",
       "category": "MUST",
-      "description": "The root Dataset MUST use 'hasPart' to reference one or more unique 'Dataset' entities, as described in '#unique-dataset-rule'.",
+      "description": "The root Dataset MUST use 'hasPart' to reference at least one 'Dataset' entity, as described by '#unique-dataset-rule'.",
       "hasPart": [{ "@id": "#unique-dataset-rule" }]
     },
     {
@@ -55,18 +56,8 @@
       "@type": "Constraint",
       "name": "Identifier Dataset Requirement",
       "category": "MUST",
-      "description": "Each Dataset MUST have an 'identifier' property for uniqueness, MUST reference at least one 'Collection' entity (see '#artifact-collection-rule'), and MUST mention entities representing its update history (see '#unique-dataset-history'), typically reflecting changes after each batch submission.",
-      "hasPart": [
-        { "@id": "#artifact-collection-rule" },
-        { "@id": "#unique-dataset-history" }
-      ]
-    },
-    {
-      "@id": "#unique-dataset-history",
-      "@type": "Constraint",
-      "name": "Dataset History Requirement",
-      "category": "MUST",
-      "reviewBody": "Each history entity '@id' is constructed as: <dataset-identifier>-<increment>. For each batch update, record: (1) type of change ('CreateAction', 'UpdateAction', 'DeleteAction'), (2) result (points to the unique artifact), (3) summary of the change, (4) endTime of the RO-Crate submission, and (5) actionStatus (indicating the result)."
+      "description": "Each Dataset MUST include an 'identifier' property for uniqueness, and MUST reference at least one 'Collection' entity (see '#artifact-collection-rule').",
+      "hasPart": [{ "@id": "#artifact-collection-rule" }]
     },
     {
       "@id": "#artifact-collection-rule",
@@ -81,7 +72,17 @@
       "@type": "Constraint",
       "name": "File Requirement",
       "category": "MUST",
-      "description": "This entity lists only the files included in the current batch submission, not all files present in the study RO-Crate directory. Only files specifically referenced from individual batch RO-Crates are included."
+      "description": "Each file entity MUST have '@type': 'File'. Listing in the 'hasPart' property of its parent artifact is context-dependent."
+    },
+    {
+      "@id": "#use-bag-it",
+      "@type": "Recommendation",
+      "name": "Recommended Packaging Format",
+      "description": "Submissions SHOULD follow the BagIt specification for reliable packaging and transfer, or alternatively use regular md5 checksum files.",
+      "category": "SHOULD",
+      "conformsTo": {
+        "@id": "https://bagit-profiles.github.io/bagit-profiles-specification/"
+      }
     },
     {
       "@id": "http://spdx.org/licenses/MIT",
