@@ -142,7 +142,7 @@ def csv2genocrate(
     click.echo(f'Successfully created RO-Crate: {crate_output}')
 
     if not skip_crate_validation:
-        if not is_ro_crate_valid(dirname):
+        if not is_ro_crate_valid(dirname, profile_id='batch-submission'):
             click.echo("RO-Crate metadata is invalid!")
             sys.exit(1)
 
