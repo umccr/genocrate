@@ -27,14 +27,14 @@ The profile is described in [`ro-crate-metadata.json`](./ro-crate-metadata.json)
 
 ## Main Entities and Rules
 
-| Entity / Rule                | Description                                                                                   |
-|------------------------------|----------------------------------------------------------------------------------------------|
-| Root Dataset                 | Must use `hasPart` to reference one or more unique Dataset entities (see `#unique-dataset-rule`). |
-| Identifier Dataset           | Each Dataset must have an `identifier`, reference at least one Collection, and mention update history entities. |
-| Dataset History              | Each history entity records the type of change, result, summary, end time, and action status for each batch update. |
-| Artifact Collection          | Collections group related artifacts and must reference one or more File entities within the same category. |
-| File Requirement             | Only files specifically referenced from individual batch RO Crates are included, not all files present in the study directory. |
-| Hierarchy Guide              | Describes the data hierarchy: Root Dataset → Dataset → Collection → File.                    |
+| Entity / Rule       | Description                                                                                                                    |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Root Dataset        | Must use `hasPart` to reference one or more unique Dataset entities (see `#unique-dataset-rule`).                              |
+| Identifier Dataset  | Each Dataset must have an `identifier`, reference at least one Collection, and mention update history entities.                |
+| Dataset History     | Each history entity records the type of change, result, summary, end time, and action status for each batch update.            |
+| Artifact Collection | Collections group related artifacts and must reference one or more File entities within the same category.                     |
+| File Requirement    | Only files specifically referenced from individual batch RO Crates are included, not all files present in the study directory. |
+| Hierarchy Guide     | Describes the data hierarchy: Root Dataset → Dataset → Collection → File.                                                      |
 
 ## Example Structure
 

@@ -26,14 +26,14 @@ The profile is described in [`ro-crate-metadata.json`](./ro-crate-metadata.json)
 
 ## Main Entities and Rules
 
-| Entity / Rule         | Description                                                                                                      |
-|-----------------------|------------------------------------------------------------------------------------------------------------------|
-| Root Dataset          | Must use `hasPart` to reference at least one Dataset entity (see `#unique-dataset-rule`).                        |
-| Identifier Dataset    | Each Dataset must include an `identifier` and reference at least one Collection entity.                          |
-| Artifact Collection   | Collections group related artifacts and must reference one or more File entities within the same category.        |
-| File Requirement      | Each file entity must have `@type: File` and an identifier (typically the filename). Whether a file is listed in a parent’s `hasPart` property depends on the crate’s organization. |
-| Use BAG IT Format     | Submissions should follow the BagIt specification for reliable packaging and transfer, or alternatively use regular md5 checksum files. |
-| Hierarchy Guide       | Describes the data hierarchy: Root Dataset → Dataset → Collection → File.                                        |
+| Entity / Rule       | Description                                                                                                                                                                         |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Root Dataset        | Must use `hasPart` to reference at least one Dataset entity (see `#unique-dataset-rule`).                                                                                           |
+| Identifier Dataset  | Each Dataset must include an `identifier` and reference at least one Collection entity.                                                                                             |
+| Artifact Collection | Collections group related artifacts and must reference one or more File entities within the same category.                                                                          |
+| File Requirement    | Each file entity must have `@type: File` and an identifier (typically the filename). Whether a file is listed in a parent’s `hasPart` property depends on the crate’s organization. |
+| Use BAG IT Format   | Submissions should follow the BagIt specification for reliable packaging and transfer, or alternatively use regular md5 checksum files.                                             |
+| Hierarchy Guide     | Describes the data hierarchy: Root Dataset → Dataset → Collection → File.                                                                                                           |
 
 ## Example Structure
 

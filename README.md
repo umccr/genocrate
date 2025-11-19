@@ -57,8 +57,8 @@ There are 2 profiles to capture genomic file set:
 - `build`: Create a root RO Crate or merge an existing root RO Crate with a new batch RO Crate that conforms to the `study-dataset` profile. This command reads through batch submission crates to assemble or update the study-level crate.
 - `csv2genocrate`: Convert a CSV manifest file into an RO Crate that conforms to the `batch-submission` profile within the batch submission folder. This command also validates checksums defined in the CSV.
 - `diff`: Show differences between the root study-dataset RO Crate and a new batch RO Crate before merging, helping you review changes prior to running the `build` command.
-- `validate`: Validate that a folder conforms to the `batch-submission` RO Crate profile, including checks for checksums and BagIt specification compliance.
-
+- `validate-batch`: Validate that a folder conforms to the `batch-submission` RO Crate profile, including checks for checksums and BagIt specification compliance.
+- `validate-dataset`: Validate the study-level RO Crate against the `study-dataset` profile. Skips content / integrity checks (e.g., checksums, BagIt) handled by validate-batch.
 For more details on each command, see the [CLI documentation](./docs/cli.md).
 
 ## Installation

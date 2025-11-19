@@ -52,7 +52,7 @@ def validate_batch(path, validation_type, parallel, skip_integrity_validation, d
         manifest_file_path = path
         dir_path = os.path.dirname(path)
 
-    if not is_ro_crate_valid(f"{dir_path}/{data_folder}"):
+    if not is_ro_crate_valid(f"{dir_path}/{data_folder}", profile_id='batch-submission'):
         click.echo("RO-Crate metadata is invalid!")
         sys.exit(1)
 

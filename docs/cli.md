@@ -4,6 +4,7 @@
 - `build`
 - `diff`
 - `csv2genocrate`
+- `validate-dataset`
 
 ---
 
@@ -30,7 +31,7 @@ Options:
 ```
 Usage: genocrate [OPTIONS] PATH
 
-  Build and validate a batch of RO-Crate files.
+  Build a batch of RO-Crate files.
 
   PATH: Directory containing one or more ro-crate-metadata.json files.
 
@@ -38,6 +39,8 @@ Options:
   -o, --output-path TEXT  Path to the output RO-Crate metadata file (local
                           path or S3 URI, e.g., s3://bucket/ro-crate-
                           metadata.json). Requires AWS credentials for S3.
+  --no-preview            Skip the generation of an HTML preview file. (ro-
+                          crate-preview.html)
   --name TEXT             Dataset name  [required]
   --description TEXT      Dataset description  [required]
   --date-published TEXT   Publication date (YYYY-MM-DD)
@@ -82,5 +85,19 @@ Options:
   --skip-crate-validation      Skip crate validation after is being created
   --skip-integrity-validation  Skip integrity validation
   --help                       Show this message and exit.
+```
+
+## `validate-dataset`
+
+```
+Usage: genocrate [OPTIONS] DIRECTORY
+
+  Validate RO Crate for the study-dataset profile compliance.
+
+  :param directory: The directory containing the RO-Crate file (ro-crate-
+  metadata.json)
+
+Options:
+  --help  Show this message and exit.
 ```
 

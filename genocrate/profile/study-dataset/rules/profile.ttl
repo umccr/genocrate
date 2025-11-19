@@ -5,11 +5,11 @@
 
 
 
-<https://github.com/umccr/genocrate/tree/main/genocrate/profile/batch-submission>
+<https://github.com/umccr/genocrate/tree/main/genocrate/profile/study-dataset>
     a prof:Profile ;
 
     # the Profile's label
-    rdfs:label "Batch Submission Profile"@en ;
+    rdfs:label "Study Dataset Profile"@en ;
 
     # regular metadata, a basic description of the Profile
     rdfs:comment """Describes an incremental submission or batch of data that contributes to the larger study dataset."""@en ;
@@ -42,5 +42,5 @@
     ] ;
 
     # a short code to refer to the Profile with when a URI can't be used
-    prof:hasToken "batch-submission" ;
+    prof:hasToken "study-dataset" ;
 .
