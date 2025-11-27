@@ -6,9 +6,7 @@
 
 <script type="application/ld+json"> 
   {
-  "@context": [
-    "https://w3id.org/ro/crate/1.2/context"
-  ],
+  "@context": "https://w3id.org/ro/crate/1.2/context",
   "@graph": [
     {
       "@id": "ro-crate-metadata.json",
@@ -27,17 +25,14 @@
     },
     {
       "@id": "./",
-      "description": "GenoCrate Batch Genomic Profile: a specialization of RO-Crate for packaging genomic data submissions. All files are grouped by artifact type, and artifact groups are linked to a single participant identifier, ensuring a clear, consistent structure for each data batch.",
+      "description": "GenoCrate Study Dataset Profile: summarizes genomic datasets across multiple batch submissions, each conforming to the 'genomic-batch-submission' profile. This profile defines hierarchical structure, constraints, and documentation for study-level RO-Crates.",
       "@type": "Dataset",
       "datePublished": "2025-09-22",
-      "name": "Genocrate Batch Profile",
+      "name": "Genorate Study Dataset Profile",
       "version": "0.0.1",
       "hasPart": [
         {
           "@id": "#root-dataset-rule"
-        },
-        {
-          "@id": "#use-bag-it"
         },
         {
           "@id": "#hierarchy-guide"
@@ -48,28 +43,13 @@
       ],
       "license": {
         "@id": "http://spdx.org/licenses/MIT"
-      }
-    },
-    {
-      "@id": "#root-dataset-rule",
-      "@type": "Constraint",
-      "name": "Root Dataset Requirement",
-      "category": "MUST",
-      "description": "The root Dataset MUST use 'hasPart' to reference at least one 'Dataset' entity, as described by '#unique-dataset-rule'.",
-      "hasPart": [
-        {
-          "@id": "#unique-dataset-rule"
-        }
-      ]
-    },
-    {
-      "@id": "#use-bag-it",
-      "@type": "Recommendation",
-      "name": "Use BAG IT format",
-      "description": "The submission SHOULD follow the BagIt specification for reliable packaging and transfer.",
-      "category": "SHOULD",
-      "conformsTo": {
-        "@id": "https://bagit-profiles.github.io/bagit-profiles-specification/"
+      },
+      "@reverse": {
+        "about": [
+          {
+            "@id": "ro-crate-metadata.json"
+          }
+        ]
       }
     },
     {
@@ -90,7 +70,143 @@
         {
           "@id": "#file-rule"
         }
-      ]
+      ],
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#root-dataset-rule",
+      "@type": "Constraint",
+      "name": "Root Dataset Requirement",
+      "category": "MUST",
+      "description": "The root Dataset MUST use 'hasPart' to reference one or more unique 'Dataset' entities, as described in '#unique-dataset-rule'.",
+      "hasPart": [
+        {
+          "@id": "#unique-dataset-rule"
+        }
+      ],
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ],
+        "mentions": [
+          {
+            "@id": "#hierarchy-guide"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#unique-dataset-rule",
+      "@type": "Constraint",
+      "name": "Identifier Dataset Requirement",
+      "category": "MUST",
+      "description": "Each Dataset MUST have an 'identifier' property for uniqueness, MUST reference at least one 'Collection' entity (see '#artifact-collection-rule'), and MUST mention entities representing its update history (see '#unique-dataset-history'), typically reflecting changes after each batch submission.",
+      "hasPart": [
+        {
+          "@id": "#artifact-collection-rule"
+        },
+        {
+          "@id": "#unique-dataset-history"
+        }
+      ],
+      "@reverse": {
+        "mentions": [
+          {
+            "@id": "#hierarchy-guide"
+          }
+        ],
+        "hasPart": [
+          {
+            "@id": "#root-dataset-rule"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#unique-dataset-history",
+      "@type": "Constraint",
+      "name": "Dataset History Requirement",
+      "category": "MUST",
+      "reviewBody": "Each history entity '@id' is constructed as: <dataset-identifier>-<increment>. For each batch update, record: (1) type of change ('CreateAction', 'UpdateAction', 'DeleteAction'), (2) result (points to the unique artifact), (3) summary of the change, (4) endTime of the RO-Crate submission, and (5) actionStatus (indicating the result).",
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "#unique-dataset-rule"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#artifact-collection-rule",
+      "@type": "Constraint",
+      "name": "Artifact Collection Requirement",
+      "category": "MUST",
+      "description": "An artifact 'Collection' groups related artifacts and MUST reference one or more 'File' entities within the same category. Example: a VCF file and its index file form a single artifact collection. Assign '@id' using the identifier and artifact type (e.g., 'A001-vcf') for consistency.",
+      "hasPart": [
+        {
+          "@id": "#file-rule"
+        }
+      ],
+      "@reverse": {
+        "mentions": [
+          {
+            "@id": "#hierarchy-guide"
+          }
+        ],
+        "hasPart": [
+          {
+            "@id": "#unique-dataset-rule"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#file-rule",
+      "@type": "Constraint",
+      "name": "File Requirement",
+      "category": "MUST",
+      "description": "This entity lists only the files included in the current batch submission, not all files present in the study RO-Crate directory. Only files specifically referenced from individual batch RO-Crates are included.",
+      "@reverse": {
+        "mentions": [
+          {
+            "@id": "#hierarchy-guide"
+          }
+        ],
+        "hasPart": [
+          {
+            "@id": "#artifact-collection-rule"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "http://spdx.org/licenses/MIT",
+      "@type": "DefinedTerm",
+      "termCode": "MIT",
+      "identifier": "MIT",
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT",
+      "@reverse": {
+        "license": [
+          {
+            "@id": "./"
+          },
+          {
+            "@id": "example/"
+          },
+          {
+            "@id": "example/ro-crate-metadata.json"
+          }
+        ]
+      }
     },
     {
       "@id": "example/",
@@ -106,46 +222,26 @@
         {
           "@id": "example/ro-crate-preview.html"
         }
-      ]
+      ],
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
     },
     {
-      "@id": "http://spdx.org/licenses/MIT",
-      "@type": "DefinedTerm",
-      "termCode": "MIT",
-      "identifier": "MIT",
-      "name": "MIT License",
-      "url": "https://opensource.org/licenses/MIT"
-    },
-    {
-      "@id": "#unique-dataset-rule",
-      "@type": "Constraint",
-      "name": "Identifier Dataset Requirement",
-      "category": "MUST",
-      "description": "Each Dataset MUST include an 'identifier' property for uniqueness, and MUST reference at least one 'Collection' entity (see '#artifact-collection-rule').",
-      "hasPart": [
-        {
-          "@id": "#artifact-collection-rule"
-        }
-      ]
-    },
-    {
-      "@id": "#artifact-collection-rule",
-      "@type": "Constraint",
-      "name": "Artifact Collection Requirement",
-      "category": "MUST",
-      "description": "An artifact 'Collection' groups related artifacts and MUST reference one or more 'File' entities within the same category. Example: a VCF file and its index file form a single artifact collection. Assign '@id' using the identifier and artifact type (e.g., 'A001-vcf') for consistency.",
-      "hasPart": [
-        {
-          "@id": "#file-rule"
-        }
-      ]
-    },
-    {
-      "@id": "#file-rule",
-      "@type": "Constraint",
-      "name": "File Requirement",
-      "category": "MUST",
-      "description": "Each file entity MUST have '@type': 'File'. Listing in the 'hasPart' property of its parent artifact is context-dependent."
+      "@id": "example/ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "encodingFormat": "text/html",
+      "@reverse": {
+        "subjectOf": [
+          {
+            "@id": "example/"
+          }
+        ]
+      }
     },
     {
       "@id": "example/ro-crate-metadata.json",
@@ -158,12 +254,14 @@
       "encodingFormat": "application/json",
       "license": {
         "@id": "http://spdx.org/licenses/MIT"
+      },
+      "@reverse": {
+        "subjectOf": [
+          {
+            "@id": "example/"
+          }
+        ]
       }
-    },
-    {
-      "@id": "example/ro-crate-preview.html",
-      "@type": "CreativeWork",
-      "encodingFormat": "text/html"
     }
   ]
 }
@@ -171,7 +269,7 @@
 
     
 <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
-<script src="https://unpkg.com/ro-crate-html@0.1/dist/ro-crate-dynamic.min.js"></script>
+<script src="https://unpkg.com/ro-crate-html-js/dist/ro-crate-dynamic.js"></script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
@@ -192,17 +290,17 @@ table.table {
   <nav class="navbar">
 
     <ul class="nav navbar-nav" >
-        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;Genocrate Batch Profile</span></a></li>
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;Genorate Study Dataset Profile</span></a></li>
     </ul>
 
   </nav>
 <div class="container">
 <div class="jumbotron">
-<h4 class="citation"></h4>
-<h3 class="item_name">Genocrate Batch Profile</h3>
+<h4 class="citation"></h3>
+<h3 class="item_name">Genorate Study Dataset Profile</h4>
 
 
-<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>Genocrate Batch Profile</span> in JSON-LD format</a>
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>Genorate Study Dataset Profile</span> in JSON-LD format</a>
 
 
 <div id="check"></div>
@@ -214,12 +312,12 @@ table.table {
 
 <div id="summary">
 <div class='all-meta'>
-            <div>
-                <h3> Genocrate Batch Profile</h3>
-                
-                
-                
-                
+           <div>
+            <h3> Genorate Study Dataset Profile</h3>
+            
+            
+            
+            
         <div id="./">
             
             <table class="table metadata table-striped" >
@@ -228,13 +326,13 @@ table.table {
             <td style='text-align:left'><span>./</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
-            <td style='text-align:left'><span>Genocrate Batch Profile</span></td>
+            <td style='text-align:left'><span>Genorate Study Dataset Profile</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">@type</th>
             <td style='text-align:left'><span>Dataset</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
-            <td style='text-align:left'><span>GenoCrate Batch Genomic Profile: a specialization of RO-Crate for packaging genomic data submissions. All files are grouped by artifact type, and artifact groups are linked to a single participant identifier, ensuring a clear, consistent structure for each data batch.</span></td>
+            <td style='text-align:left'><span>GenoCrate Study Dataset Profile: summarizes genomic datasets across multiple batch submissions, each conforming to the 'genomic-batch-submission' profile. This profile defines hierarchical structure, constraints, and documentation for study-level RO-Crates.</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">datePublished<span>&nbsp;</span><a href="http://schema.org/datePublished">[?]</a></th>
             <td style='text-align:left'><span>2025-09-22</span></td>
@@ -245,8 +343,6 @@ table.table {
             <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
             <td style='text-align:left'><ul>
                         <li><a href="#%23root-dataset-rule">Root Dataset Requirement</a></li>
-                        
-                        <li><a href="#%23use-bag-it">Use BAG IT format</a></li>
                         
                         <li><a href="#%23hierarchy-guide">Hierarchy Overview</a></li>
                         
@@ -261,14 +357,15 @@ table.table {
             </tr></tbody>
             </table>
         </div>
-            </div>
+
+        </div>
         <hr/><br/><br/>
-            <div>
-                <h3> Root Dataset Requirement</h3>
-                
-                
-                
-                
+           <div>
+            <h3> Root Dataset Requirement</h3>
+            
+            
+            
+            
         <div id="#root-dataset-rule">
             
             <table class="table metadata table-striped" >
@@ -283,7 +380,7 @@ table.table {
             <td style='text-align:left'><span>Constraint</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
-            <td style='text-align:left'><span>The root Dataset MUST use 'hasPart' to reference at least one 'Dataset' entity, as described by '#unique-dataset-rule'.</span></td>
+            <td style='text-align:left'><span>The root Dataset MUST use 'hasPart' to reference one or more unique 'Dataset' entities, as described in '#unique-dataset-rule'.</span></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">category<span>&nbsp;</span><a href="http://schema.org/category">[?]</a></th>
             <td style='text-align:left'><span>MUST</span></td>
@@ -292,56 +389,22 @@ table.table {
             <td style='text-align:left'><a href="#%23unique-dataset-rule">Identifier Dataset Requirement</a></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
-            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            <td style='text-align:left'><a href="#./">Genorate Study Dataset Profile</a></td>
             </tr><tr>
             <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
             <td style='text-align:left'><a href="#%23hierarchy-guide">Hierarchy Overview</a></td>
             </tr></tbody>
             </table>
         </div>
-            </div>
-        <hr/><br/><br/>
-            <div>
-                <h3> Use BAG IT format</h3>
-                
-                
-                
-                
-        <div id="#use-bag-it">
-            
-            <table class="table metadata table-striped" >
-                <tbody><tr>
-            <th style="text-align:left;" class="prop">@id</th>
-            <td style='text-align:left'><span>#use-bag-it</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
-            <td style='text-align:left'><span>Use BAG IT format</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">@type</th>
-            <td style='text-align:left'><span>Recommendation</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
-            <td style='text-align:left'><span>The submission SHOULD follow the BagIt specification for reliable packaging and transfer.</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">category<span>&nbsp;</span><a href="http://schema.org/category">[?]</a></th>
-            <td style='text-align:left'><span>SHOULD</span></td>
-            </tr><tr>
-            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
-            <td style='text-align:left'><a href="https://bagit-profiles.github.io/bagit-profiles-specification/">https://bagit-profiles.github.io/bagit-profiles-specification/</a></td>
-            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
-            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
-            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
-            </tr></tbody>
-            </table>
+
         </div>
-            </div>
         <hr/><br/><br/>
-            <div>
-                <h3> Hierarchy Overview</h3>
-                
-                
-                
-                
+           <div>
+            <h3> Hierarchy Overview</h3>
+            
+            
+            
+            
         <div id="#hierarchy-guide">
             
             <table class="table metadata table-striped" >
@@ -370,18 +433,19 @@ table.table {
                         </ul></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
-            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            <td style='text-align:left'><a href="#./">Genorate Study Dataset Profile</a></td>
             </tr></tbody>
             </table>
         </div>
-            </div>
+
+        </div>
         <hr/><br/><br/>
-            <div>
-                <h3> Example RO-Crate following this profile</h3>
-                
-                
-                
-                
+           <div>
+            <h3> Example RO-Crate following this profile</h3>
+            
+            
+            
+            
         <div id="example/">
             
             <table class="table metadata table-striped" >
@@ -406,18 +470,19 @@ table.table {
                         </ul></td>
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
-            <td style='text-align:left'><a href="#./">Genocrate Batch Profile</a></td>
+            <td style='text-align:left'><a href="#./">Genorate Study Dataset Profile</a></td>
             </tr></tbody>
             </table>
         </div>
-            </div>
+
+        </div>
         <hr/><br/><br/>
-            <div>
-                <h3><a href="http://spdx.org/licenses/MIT">Go to: </a> MIT License</h3>
-                
-                
-                
-                
+           <div>
+            <h3><a href="http://spdx.org/licenses/MIT">Go to: </a> MIT License</h3>
+            
+            
+            
+            
         <div id="http://spdx.org/licenses/MIT">
             
             <table class="table metadata table-striped" >
@@ -442,7 +507,7 @@ table.table {
             </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
             <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
             <td style='text-align:left'><ul>
-                        <li><a href="#./">Genocrate Batch Profile</a></li>
+                        <li><a href="#./">Genorate Study Dataset Profile</a></li>
                         
                         <li><a href="#example/">Example RO-Crate following this profile</a></li>
                         
@@ -451,7 +516,8 @@ table.table {
             </tr></tbody>
             </table>
         </div>
-            </div>
+
+        </div>
         <hr/><br/><br/></div>
 </div>
 

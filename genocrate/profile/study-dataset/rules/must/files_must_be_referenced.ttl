@@ -1,0 +1,28 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+
+
+# File Reference Constraint
+# Files should be properly referenced in the hierarchy through hasPart
+
+<#FileReferenceShape>
+    a sh:NodeShape ;
+    sh:name "File Reference Constraint" ;
+    sh:description "Files should be referenced through the hierarchy (Dataset → Collection → File)." ;
+    sh:targetClass schema:MediaObject ;
+    sh:severity sh:Violation ;
+        sh:sparql [
+        sh:message "File entities should be referenced in the 'hasPart' property of their parent Collection or Dataset." ;
+        sh:select """
+            PREFIX schema: <http://schema.org/>
+
+            SELECT $this
+            WHERE {
+                $this a schema:MediaObject .
+                FILTER NOT EXISTS {
+                    ?parent schema:hasPart $this .
+                }
+            }
+        """ ;
+    ] ;
+.

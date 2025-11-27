@@ -4,11 +4,11 @@ version = "0.1"
 description = "CLI suite"
 readme = "README.md"
 authors = [{ name = "William Intan" }]
-license = { "text" = "Apache-2.0" }
+license = "Apache-2.0"
 requires-python = ">=3.8"
 classifiers = []
 dependencies = [
-    "click", "bagit", "roc-validator", "boto3"
+    "click", "bagit", "roc-validator", "boto3", "jinja2"
 ]
 
 [build-system]

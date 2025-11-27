@@ -93,7 +93,6 @@ def is_md5_checksum_valid(manifest_file_path: str, data_directory: str, processe
         for f in os.listdir(data_directory)
         if os.path.isfile(os.path.join(data_directory, f))
     ]
-    print(files)
 
     hash_results = compute_hashes(files, processes=processes)
     manifest = read_manifest(manifest_file_path)
@@ -113,18 +112,21 @@ def is_md5_checksum_valid(manifest_file_path: str, data_directory: str, processe
     return not errors
 
 
-def is_ro_crate_valid(path: str) -> bool:
+def is_ro_crate_valid(path: str, profile_id: str) -> bool:
+
+    if profile_id not in ['study-dataset', 'batch-submission']:
+        raise ValueError("Profile ID must be one of 'study-dataset' or 'batch-submission'")
+
     # Create an instance of `ValidationSettings` class to configure the validation
     settings = services.ValidationSettings(
         # Set the path to the RO-Crate root directory
         rocrate_uri=path,
         # Set the identifier of the RO-Crate profile to use for validation.
         # If not set, the system will attempt to automatically determine the appropriate validation profile.
-        profile_identifier='genocrate-batch-submission',
+        profile_identifier=profile_id,
         # Set the requirement level for the validation
         requirement_severity=models.Severity.REQUIRED,
-        profiles_path=os.path.join(os.path.dirname(__file__), "../profile/genocrate-batch-submission/rules"),
-
+        profiles_path=os.path.join(os.path.dirname(__file__), f"../profile/{profile_id}/rules"),
     )
     # Call the validation service with the settings
     result = services.validate(settings)

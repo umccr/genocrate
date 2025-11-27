@@ -1,0 +1,32 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+
+<#CollectionFileShape>
+    a sh:NodeShape ;
+    sh:name "Collection File Constraint" ;
+    sh:description "Each Collection MUST contain at least one File via hasPart." ;
+    sh:targetClass schema:Collection ;
+    sh:severity sh:Violation ;
+    sh:property [
+        sh:path schema:hasPart ;
+        sh:minCount 1 ;
+        sh:message "Collection must have at least one File in 'hasPart'." ;
+    ] ;
+    sh:sparql [
+        sh:message "Collection must reference at least one File entity." ;
+        sh:select """
+            PREFIX schema: <http://schema.org/>
+
+            SELECT $this
+            WHERE {
+                $this a schema:Collection .
+
+                # Check if hasPart contains at least one File
+                FILTER NOT EXISTS {
+                    $this schema:hasPart ?file .
+                    ?file a schema:MediaObject .
+                }
+            }
+        """ ;
+    ] ;
+.

@@ -1,0 +1,46 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prof: <http://www.w3.org/ns/dx/prof/> .
+@prefix role: <http://www.w3.org/ns/dx/prof/role/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+
+<https://github.com/umccr/genocrate/tree/main/genocrate/profile/batch-submission>
+    a prof:Profile ;
+
+    # the Profile's label
+    rdfs:label "Batch Submission Profile"@en ;
+
+    # regular metadata, a basic description of the Profile
+    rdfs:comment """Describes an incremental submission or batch of data that contributes to the larger study dataset."""@en ;
+
+    # URI of the publisher of the RO-Crate Metadata Specification
+    dct:publisher <https://github.com/umccr> ;
+
+    # This profile is an extension of the RO-Crate Metadata Specification 1.2 profile <https://w3id.org/ro/crate/1.2>
+    prof:isProfileOf <https://w3id.org/ro/crate/1.2> ;
+
+    # Explicitly state that this profile is a transitive profile of the RO-Crate Metadata Specification 1.2 profile
+    prof:isTransitiveProfileOf <https://w3id.org/ro/crate/1.2> ;
+
+    # this profile has a human-readable documentation resource
+    prof:hasResource [
+        a prof:ResourceDescriptor ;
+
+        # it's in HTML format
+        dct:format <https://w3id.org/mediatype/text/html> ;
+
+        # it conforms to HTML, here referred to by its namespace URI as a Profile
+        dct:conformsTo <https://www.w3.org/TR/html/> ;
+
+        # this profile resource plays the role of "Specification"
+        # described in this ontology's accompanying Roles vocabulary
+        prof:hasRole role:Specification ;
+
+        # this profile is inherited from the RO-Crate Metadata Specification 1.2
+        prof:isInheritedFrom <https://w3id.org/ro/crate/1.2> ;
+    ] ;
+
+    # a short code to refer to the Profile with when a URI can't be used
+    prof:hasToken "batch-submission" ;
+.

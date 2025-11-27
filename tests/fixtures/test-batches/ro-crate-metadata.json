@@ -26,11 +26,9 @@
         }
       ],
       "name": "test-dataset",
-      "description": "a dataset created for testing",
-      "datePublished": "2025-10-22",
-      "license_": {
-        "@id": "Confidential - Not for Public Release."
-      }
+      "description": "a description",
+      "datePublished": "2025-11-14",
+      "license": "Confidential - Not for Public Release."
     },
     {
       "@id": "#A001",
