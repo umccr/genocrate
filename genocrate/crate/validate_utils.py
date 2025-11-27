@@ -93,7 +93,6 @@ def is_md5_checksum_valid(manifest_file_path: str, data_directory: str, processe
         for f in os.listdir(data_directory)
         if os.path.isfile(os.path.join(data_directory, f))
     ]
-    print(files)
 
     hash_results = compute_hashes(files, processes=processes)
     manifest = read_manifest(manifest_file_path)

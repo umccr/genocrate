@@ -13,7 +13,16 @@
 ```
 Usage: genocrate [OPTIONS] PATH
 
-  Validate a batch of files or bags for BagIt or MD5 compliance.
+  Validate a batch for BagIt or MD5 compliance.
+
+  Data must reside in the `data` subdirectory.
+
+  Validation types: - BagIt: `path` is the batch directory containing `data`
+  and BagIt files/manifests. - MD5: `path` is the MD5 manifest file located
+  alongside `data` (not inside it).
+
+  RO-Crate metadata in `data` is always validated first. Use `--skip-
+  integrity-validation` to skip BagIt/MD5 checks.
 
 Options:
   -t, --validation-type [bagit|md5]
@@ -21,8 +30,6 @@ Options:
   -p, --parallel INTEGER          Number of processes to run in parallel
   --skip-integrity-validation     Skip integrity validation and only validate
                                   RO-Crate metadata
-  --data-folder TEXT              The folder where the data files are located.
-                                  Defaults to 'data'
   --help                          Show this message and exit.
 ```
 
@@ -71,7 +78,14 @@ Options:
 ```
 Usage: genocrate [OPTIONS] CSV_PATH
 
-  Convert a CSV manifest file to an RO-Crate.
+  Convert a CSV manifest to an RO-Crate.
+
+  The CSV manifest and its referenced files must reside in the `data`
+  subdirectory.
+
+  Outputs: - `ro-crate-metadata.json` in the same directory as the CSV file. -
+  `manifest-md5.txt` in the parent directory of the CSV file (one level above
+  `data`).
 
   The manifest must contain columns: filename, identifier, md5 checksum
 

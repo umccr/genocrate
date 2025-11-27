@@ -4,6 +4,7 @@ import csv
 import click
 import json
 import sys
+from pathlib import Path
 
 from genocrate.crate.rocrate import ROCrate
 from genocrate.crate.validate_utils import is_ro_crate_valid, compute_hashes
@@ -53,7 +54,13 @@ def csv2genocrate(
         skip_integrity_validation: bool,
 ):
     """
-    Convert a CSV manifest file to an RO-Crate.
+    Convert a CSV manifest to an RO-Crate.
+
+    The CSV manifest and its referenced files must reside in the `data` subdirectory.
+
+    Outputs:
+    - `ro-crate-metadata.json` in the same directory as the CSV file.
+    - `manifest-md5.txt` in the parent directory of the CSV file (one level above `data`).
 
     The manifest must contain columns: filename, identifier, md5 checksum
 
@@ -61,7 +68,7 @@ def csv2genocrate(
 
     # Get directory and name for output
     dirname = os.path.dirname(csv_path)
-    name = os.path.basename(os.path.dirname(csv_path))
+    name = Path(csv_path).parent.parent.name
     crate_output = f"{dirname}/ro-crate-metadata.json"
 
     # Initialize the RO-Crate
@@ -163,6 +170,20 @@ def csv2genocrate(
             click.echo("Checksum validation errors:")
             click.echo(json.dumps(errors, indent=4))
             sys.exit(1)
+        else:
+            folder = os.path.basename(dirname)
+
+            # Compute MD5 for `csv_path` and `ro-crate-metadata.json`, then update filename_to_checksum so both appear in `manifest-md5.txt`
+            new_hash_record = compute_hashes([csv_path, os.path.join(dirname,"ro-crate-metadata.json")])
+            for fp, md5 in new_hash_record:
+                filename_to_checksum[os.path.basename(fp)] = md5
+
+            manifest_path = os.path.join(os.path.dirname(dirname), "manifest-md5.txt")
+            with open(manifest_path, 'w') as f:
+                for filename, checksum in filename_to_checksum.items():
+                    f.write(f"{checksum}  {folder}/{filename}\n")
+
+            click.echo(f"MD5 manifest written to: {manifest_path}")
 
     return crate
 

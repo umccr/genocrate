@@ -29,20 +29,21 @@ from genocrate.main import cli
     default=False,
     help="Skip integrity validation and only validate RO-Crate metadata"
 )
-@click.option(
-    '--data-folder',
-    type=click.STRING,
-    default="data",
-    help="The folder where the data files are located. Defaults to 'data'"
-)
-def validate_batch(path, validation_type, parallel, skip_integrity_validation, data_folder):
+def validate_batch(path, validation_type, parallel, skip_integrity_validation):
     """
-    Validate a batch of files or bags for BagIt or MD5 compliance.
+    Validate a batch for BagIt or MD5 compliance.
 
+    Data must reside in the `data` subdirectory.
 
+    Validation types:
+    - BagIt: `path` is the batch directory containing `data` and BagIt files/manifests.
+    - MD5: `path` is the MD5 manifest file located alongside `data` (not inside it).
+
+    RO-Crate metadata in `data` is always validated first. Use `--skip-integrity-validation` to skip BagIt/MD5 checks.
     """
     dir_path = path
     manifest_file_path = ''
+    data_folder = 'data'
 
     # if path is a file, ignore cd to the data directory
     if os.path.isfile(path):
