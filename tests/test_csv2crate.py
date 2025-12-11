@@ -5,7 +5,7 @@ from genocrate.crate.rocrate import ROCrate
 
 def test_csv2genocrate():
     """
-    Test for csv2genocrate command success
+    Test 'csv2genocrate' command output a valid RO-Crate for a given csv manifest file.
     """
     test_dir = "./tests/fixtures/batch-005/data/"
 

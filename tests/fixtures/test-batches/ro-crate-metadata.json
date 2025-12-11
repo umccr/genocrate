@@ -271,7 +271,7 @@
       "@type": "Collection",
       "name": "FASTQ files for A003",
       "description": "Sequencing reads in FASTQ format",
-      "identifier": "A003-fastq",
+      "identifier": "A003-fastq"  ,
       "hasPart": [
         {
           "@id": "./tests/fixtures/test-batches/batch-003/data/A003_R1.fastq"

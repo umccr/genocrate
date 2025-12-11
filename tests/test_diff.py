@@ -7,7 +7,7 @@ from genocrate.crate.rocrate import ROCrate
 
 def test_diff_crate():
     """
-    Test that the diff command
+    Test 'diff' command is picking up the changes correctly
     """
     current_dir = os.path.dirname(__file__)
     root_crate = os.path.join(current_dir, "./fixtures/test-batches/ro-crate-metadata.json")

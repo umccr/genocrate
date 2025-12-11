@@ -4,7 +4,7 @@ from genocrate.crate.rocrate import ROCrate
 import os
 
 
-def test_build():
+def test_build_root_ro_crate():
     """
     Validates that the 'build' command generates a correct RO-Crate
     """
