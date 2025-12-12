@@ -87,6 +87,46 @@ python -m genocrate --help
 
 Detailed command-line documentation is available [in the CLI docs](./docs/cli.md).
 
+## Example
+
+Some example command from validating a ro-crate batch
+
+### Successful validation (batch-submission with BagIt)
+
+```bash
+genocrate validate-batch ./tests/fixtures/test-batches/batch-001 -t bagit
+RO-Crate metadata is valid!
+Validating for BagIt compliance (./tests/fixtures/test-batches/batch-001)
+Validation successful!
+```
+
+### Failure: File present in directory but missing from RO-Crate metadata
+
+```bash
+genocrate validate-batch ./tests/fixtures/batch-004 --skip-integrity-validation
+Detected issue of severity REQUIRED with check "batch-submission_1.1": Physical file 'A001.vcf.tbi' present in directory but not declared as File entity in ro-crate-metadata.json
+RO-Crate metadata is invalid!
+```
+
+
+### Failure: Integrity check fails due to bad MD5 manifest
+
+**Note:** The actual `batch-004` in the repository is intentionally a bad RO-Crate. For this example it was modified to have valid RO-Crate metadata but an invalid MD5 manifest, as shown in the example below.
+
+```bash
+genocrate validate-batch ./tests/fixtures/batch-004/bad-manifest-md5.txt -t md5
+RO-Crate metadata is valid!
+Validating files from md5sum (./tests/fixtures/batch-004/bad-manifest-md5.txt)
+[
+    "File data/A001.vcf.tbi not found in manifest",
+    "File data/A001.vcf not found in manifest",
+    "File data/A001.bam.bai not found in manifest",
+    "MD5 mismatch for data/ro-crate-metadata.json: expected b7410ecf0fd48789ab7b618a519cdaaf, calculated a9650294eb3d10acbff3926769ae800e",
+    "MD5 mismatch for data/A001.bam: expected d6d0c756fb8abfb33e652a20XXXXXXXX, calculated d6d0c756fb8abfb33e652a20e85b70bc"
+]
+MD5 checksum validation failed.
+```
+
 ## Development
 
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
@@ -112,4 +152,21 @@ To update the CLI docs:
 
 ```bash
 python ./scripts/generate_cli_docs.py
+```
+
+### Testing
+
+Tests are located in the `tests/` folder. Run them using `pytest -rA`
+
+```text
+================================================================= short test summary info ==================================================================
+PASSED tests/test_build.py::test_build_root_ro_crate - Validates that the 'build' command generates a correct RO-Crate
+PASSED tests/test_csv2crate.py::test_csv2genocrate - Test 'csv2genocrate' command output a valid RO-Crate for a given csv manifest file.
+PASSED tests/test_diff.py::test_diff_crate - Test 'diff' command is picking up the changes correctly
+PASSED tests/test_genocrate.py::test_version
+PASSED tests/test_validate.py::test_validate_batch_valid_bagit - Test 'validate-batch' command succeeds for a batch conforming to the BagIt specification.
+PASSED tests/test_validate.py::test_validate_batch_invalid_bagit - Test 'validate-batch' command fails for a batch NOT conforming to the BagIt specification.
+PASSED tests/test_validate.py::test_validate_batch_valid_md5 - Test 'validate-batch' command succeeds when the manifest is valid and all files are listed in the manifest.
+PASSED tests/test_validate.py::test_validate_batch_invalid_md5 - Test 'validate-batch' when the manifest failed (incorrect checksum or files not listed).
+PASSED tests/test_validate.py::test_validate_invalid_ro_crate - Test 'validate-batch' command fails when the RO-Crate metadata does not list all files.
 ```
